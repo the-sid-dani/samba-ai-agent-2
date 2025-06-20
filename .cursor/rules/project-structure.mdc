@@ -1,0 +1,207 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# SambaAI Project Structure Rules
+
+This rule defines the canonical folder structure for the SambaAI project and ensures all new files are placed in appropriate locations.
+
+## **Project Overview**
+SambaAI is built on a forked Onyx repository with integrated task management. The project maintains separation between planning/management and implementation code.
+
+## **Root Directory Structure**
+
+```
+samba-ai-agent/                           # Main project root
+├── .cursor/                              # IDE configuration and rules
+│   ├── rules/                           # Cursor rules (this file location)
+│   └── mcp.json                         # MCP server configuration
+├── .taskmaster/                         # Task Master project management
+│   ├── tasks/                           # Generated tasks and task files
+│   ├── docs/                            # PRD, milestones, documentation
+│   ├── reports/                         # Complexity analysis reports
+│   └── templates/                       # Task and PRD templates
+├── sambaai/                             # 🔥 ONYX FORK (main codebase)
+│   ├── backend/                         # Python backend code
+│   │   └── onyx/                        # Core Onyx Python package
+│   ├── web/                             # React frontend application
+│   ├── deployment/                      # Docker and deployment configs
+│   │   └── docker_compose/              # Docker Compose configurations
+│   │       ├── .env                     # ✅ ENVIRONMENT CONFIGURATION
+│   │       ├── docker-compose.dev.yml   # Development compose file
+│   │       └── docker-compose.prod.yml  # Production compose file
+│   └── .git/                            # Onyx fork git repository
+├── .git/                                # Main project git repository
+└── .gitignore                           # Main project git ignore
+```
+
+## **File Placement Rules**
+
+### **Task Management Files**
+- **Location**: `.taskmaster/`
+- **Files**: `tasks.json`, task reports, PRD documents, milestone tracking
+- **Rule**: All Task Master related files MUST go in `.taskmaster/` subdirectories
+
+### **Environment Configuration**
+- **Location**: `sambaai/deployment/docker_compose/.env`
+- **Rule**: The `.env` file MUST always be in the same directory as docker-compose files
+- **Critical**: This is the ONLY location for environment variables
+
+### **Backend Code (Python)**
+- **Location**: `sambaai/backend/onyx/`
+- **Files**: Python modules, Slack bot code, connectors, API endpoints
+- **Examples**:
+  - Slack bot: `sambaai/backend/onyx/onyxbot/slack/`
+  - Connectors: `sambaai/backend/onyx/connectors/`
+  - API routes: `sambaai/backend/onyx/server/`
+- **Rule**: All Python code modifications go within the `onyx/` package structure
+
+### **Frontend Code (React/TypeScript)**
+- **Location**: `sambaai/web/`
+- **Files**: React components, UI branding, frontend assets
+- **Examples**:
+  - Components: `sambaai/web/src/components/`
+  - Assets: `sambaai/web/public/`
+  - Logo files: `sambaai/web/public/logo.png`
+- **Rule**: All frontend modifications stay within `web/` directory
+
+### **Configuration Files**
+- **Docker configs**: `sambaai/deployment/docker_compose/`
+- **IDE configs**: `.cursor/` (rules, MCP settings)
+- **Git configs**: Respective `.git/` directories for each repository
+
+### **Documentation**
+- **Project docs**: `.taskmaster/docs/` (PRDs, milestones)
+- **Development docs**: `sambaai/` (README, CONTRIBUTING files)
+- **Rule**: Keep project-level docs separate from code-level docs
+
+## **Critical File Location Guidelines**
+
+### **✅ DO: Correct File Placement**
+```bash
+# Environment variables
+sambaai/deployment/docker_compose/.env
+
+# Python code changes
+sambaai/backend/onyx/onyxbot/slack/listener.py
+
+# React UI changes  
+sambaai/web/src/components/Logo.tsx
+
+# Task management
+.taskmaster/tasks/tasks.json
+
+# Project documentation
+.taskmaster/docs/prd.md
+```
+
+### **❌ DON'T: Incorrect Placement**
+```bash
+# Wrong: Environment file in root
+.env
+
+# Wrong: Python code outside onyx package
+sambaai/backend/my_module.py
+
+# Wrong: React components in wrong location
+sambaai/src/components/
+
+# Wrong: Tasks outside taskmaster
+tasks.json
+
+# Wrong: Mixed documentation
+sambaai/docs/prd.md
+```
+
+## **New File Creation Rules**
+
+### **When creating Python files:**
+- Place in appropriate `sambaai/backend/onyx/` subdirectory
+- Follow existing Onyx package structure
+- Import using `from onyx.module import ...`
+
+### **When creating React components:**
+- Place in `sambaai/web/src/components/` or appropriate subdirectory
+- Follow existing component organization
+- Use TypeScript extensions (`.tsx`)
+
+### **When creating configuration files:**
+- Docker-related: `sambaai/deployment/docker_compose/`
+- IDE-related: `.cursor/`
+- Environment variables: Always modify existing `.env` file
+
+### **When creating documentation:**
+- Project planning: `.taskmaster/docs/`
+- Code documentation: Alongside relevant code in `sambaai/`
+- API docs: `sambaai/backend/docs/` (if needed)
+
+## **Git Repository Separation**
+
+### **Main Project Repository**
+- **Location**: Root `.git/`
+- **Contains**: Task management, project coordination, documentation
+- **Remote**: `origin` → `samba-ai-agent-2.git`
+
+### **Onyx Fork Repository**  
+- **Location**: `sambaai/.git/`
+- **Contains**: All code changes to Onyx
+- **Remote**: `upstream` → `onyx-dot-app/onyx.git`
+
+### **Commit Guidelines**
+- **Task changes**: Commit to main project repo
+- **Code changes**: Commit to Onyx fork repo
+- **Keep commits focused**: Don't mix task management and code changes
+
+## **Environment File Management**
+
+### **Single Source of Truth**
+- **File**: `sambaai/deployment/docker_compose/.env`
+- **Rule**: This is the ONLY environment file
+- **Reason**: Docker Compose looks for `.env` in same directory as compose files
+
+### **Environment Sections**
+```bash
+# Core settings (database, auth)
+# LLM configuration (models, providers)  
+# API keys (Anthropic, Google, OpenAI)
+# Slack configuration (tokens, bot settings)
+# Database settings (PostgreSQL, Redis, Vespa)
+```
+
+## **Development Workflow Adherence**
+
+### **Working Directory Rules**
+- **Run Docker from**: `sambaai/deployment/docker_compose/`
+- **Edit Python code in**: `sambaai/backend/onyx/`
+- **Edit React code in**: `sambaai/web/src/`
+- **Manage tasks from**: Project root (Task Master commands)
+
+### **File Modification Priority**
+1. **Environment**: Always modify the single `.env` file
+2. **Code changes**: Within appropriate `sambaai/` subdirectories
+3. **Configuration**: In designated config directories
+4. **Documentation**: In appropriate docs directories
+
+## **Reference Files**
+- [Environment Configuration](mdc:sambaai/deployment/docker_compose/.env)
+- [Task Master Configuration](mdc:.taskmaster/tasks/tasks.json)
+- [Onyx Backend](mdc:sambaai/backend/onyx/__init__.py)
+- [Web Frontend](mdc:sambaai/web/package.json)
+- [Docker Compose](mdc:sambaai/deployment/docker_compose/docker-compose.dev.yml)
+
+## **Enforcement Guidelines**
+
+### **For AI Agents**
+- ALWAYS check project structure before creating files
+- NEVER create files outside designated directories
+- VERIFY environment file location before modifications
+- MAINTAIN separation between task management and code
+
+### **For Developers**
+- Follow established directory conventions
+- Use provided file reference links
+- Keep related files in their designated locations
+- Respect git repository boundaries
+
+This structure ensures maintainability, clear separation of concerns, and consistent development workflow across the entire SambaAI project.
