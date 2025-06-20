@@ -625,7 +625,7 @@
         "dependencies": [
           7
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -633,7 +633,7 @@
             "description": "Initiate the creation of a new Slack app via the Slack API website or Slack CLI. Choose the workspace, provide the app name, and select the development method (UI or manifest).",
             "dependencies": [],
             "details": "Log in to your Slack account, navigate to the Slack API site, and click 'Create an App'. Choose to start from scratch or use a manifest. Assign the app to the desired workspace.\n<info added on 2025-06-20T21:42:55.277Z>\nThe Slack app has been successfully created. Investigation of the system architecture confirms that the platform supports multiple Slack bots natively without requiring code modifications. The authentication tokens will be stored securely in the database through the SambaAI web UI, eliminating the need for environment variables in production (they are only used as a testing fallback). The app is now ready for branding configuration through the web interface.\n</info added on 2025-06-20T21:42:55.277Z>",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 2,
@@ -643,7 +643,7 @@
               1
             ],
             "details": "Access the app's Basic Information page to update the app name, upload an icon, and provide a short description. These settings define how the app appears to users in the workspace.\n<info added on 2025-06-20T21:45:11.112Z>\nSuccessfully accessed the Slack Bot creation form in SambaAI web UI at http://host.docker.internal:3000/admin/bots/new. The form contains fields for Name This Slack Bot (text input), Slack Bot Token (password field), Slack App Token (password field), and a Create! button. The web UI architecture has been validated - tokens are stored in the database via web UI rather than environment variables. Ready to configure the bot by entering a bot name (suggested: \"SambaAI\" or \"SambaAI Assistant\"), the Slack Bot Token (xoxb-xxx format), and the Slack App Token (xapp-xxx format) from the created Slack app, then clicking Create! to complete the setup.\n</info added on 2025-06-20T21:45:11.112Z>",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 3,
@@ -653,7 +653,7 @@
               1
             ],
             "details": "Navigate to the OAuth & Permissions section of the app configuration. Add required scopes such as 'chat:write', 'chat:write.public', and any others needed for the app's functionality.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 4,
@@ -663,8 +663,8 @@
               1,
               3
             ],
-            "details": "Go to the Event Subscriptions section, enable events, and specify the request URL. Select the events your app should listen to, such as message events or user actions.",
-            "status": "pending"
+            "details": "Go to the Event Subscriptions section, enable events, and specify the request URL. Select the events your app should listen to, such as message events or user actions.\n<info added on 2025-06-20T21:52:05.866Z>\nEvent subscriptions have been successfully configured and are fully operational. The AI Policy Bot is now active in the SambaAI web UI and ready for use.\n\nConfiguration details:\n- Bot successfully created and enabled in SambaAI web UI\n- Channel routing configured: #test-ai-channel-3 → AI Task Force Agent → ATF Team Space\n- OAuth scopes properly set with all required permissions\n- Bot responds to @SambaAI mentions in Slack\n\nThe Slack app configuration is complete and the bot is ready for testing.\n</info added on 2025-06-20T21:52:05.866Z>",
+            "status": "done"
           }
         ]
       },
@@ -1721,7 +1721,7 @@
     ],
     "metadata": {
       "created": "2025-06-20T17:50:50.536Z",
-      "updated": "2025-06-20T21:42:42.656Z",
+      "updated": "2025-06-20T21:52:17.754Z",
       "description": "Tasks for master context"
     }
   }
