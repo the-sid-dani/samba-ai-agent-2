@@ -1,0 +1,37 @@
+# Task ID: 19
+# Title: Configure Slack Channel Mappings
+# Status: pending
+# Dependencies: 18, 15
+# Priority: medium
+# Description: Map Slack channels to appropriate document sets using Onyx admin UI
+# Details:
+Use Onyx admin UI at /admin/bots to configure channel mappings: #engineering → 'Engineering Docs', #product → 'Product Docs', #general → 'General Docs'. Configure default behavior for unmapped channels to access all document sets. Leverage existing slack_channel_config table and admin interface.
+
+# Test Strategy:
+Channel mappings work correctly, #engineering queries only return engineering docs, #product queries only return product docs, unmapped channels access all docs
+
+# Subtasks:
+## 1. Map Channels to Data Sources [pending]
+### Dependencies: None
+### Description: Identify all relevant channels and map them to their corresponding data sources, ensuring each channel's data is clearly defined and relationships are established for accurate filtering.
+### Details:
+Review all available channels, document their data structures, and define how each channel's data will be represented in the system. Establish mapping logic to ensure correct association between channels and their data.
+
+## 2. Configure Channel-Specific Defaults [pending]
+### Dependencies: 19.1
+### Description: Set up default configurations for each channel, including default filters, naming conventions, and any required transformation rules for consistent data handling.
+### Details:
+Based on the channel mapping, define and implement default settings for each channel to standardize data processing and ensure accurate document filtering.
+
+## 3. Update Admin UI for Channel Management [pending]
+### Dependencies: 19.2
+### Description: Modify the admin user interface to support channel mapping and configuration, allowing administrators to view, edit, and validate channel-specific settings.
+### Details:
+Enhance the admin UI to display channel mappings, allow configuration of defaults, and provide validation feedback to ensure correct setup.
+
+## 4. Test Channel-Specific Query Filtering [pending]
+### Dependencies: 19.3
+### Description: Develop and execute tests to validate that document filtering and queries work correctly for each channel, ensuring that only relevant documents are returned per channel configuration.
+### Details:
+Create test cases for each channel, simulate queries, and verify that the filtering logic correctly restricts results to the intended channel-specific documents.
+

@@ -1,0 +1,37 @@
+# Task ID: 20
+# Title: Test Channel-Specific Document Filtering
+# Status: pending
+# Dependencies: 19
+# Priority: medium
+# Description: Verify that channel mappings correctly filter search results
+# Details:
+Test queries in different Slack channels to ensure proper document filtering. Verify #engineering channel only searches engineering documents, #product channel only searches product documents. Test edge cases like unmapped channels and direct messages.
+
+# Test Strategy:
+Channel-specific filtering works correctly, no cross-contamination between channels, unmapped channels have appropriate default behavior, DM behavior matches expectations
+
+# Subtasks:
+## 1. Test Queries in Mapped Channels [pending]
+### Dependencies: None
+### Description: Design and execute tests to verify that queries function correctly in channels that are mapped for query handling.
+### Details:
+Include both typical and edge-case queries. Ensure mapped channels are correctly identified and responses are as expected.
+
+## 2. Test Queries in Unmapped Channels [pending]
+### Dependencies: 20.1
+### Description: Validate that queries in unmapped channels are handled appropriately, ensuring no unintended processing or leakage.
+### Details:
+Attempt queries in channels not mapped for query handling. Confirm that queries are ignored or handled per requirements.
+
+## 3. Test Queries in Direct Messages (DMs) [pending]
+### Dependencies: 20.2
+### Description: Assess query handling in direct messages to ensure correct processing and privacy.
+### Details:
+Send queries via DMs and verify that responses are accurate and isolated from channel-based logic.
+
+## 4. Verify Filtering and Cross-Contamination Prevention [pending]
+### Dependencies: 20.3
+### Description: Test filtering mechanisms to ensure queries and responses do not cross between mapped, unmapped, and DM contexts.
+### Details:
+Intentionally attempt edge cases where queries could leak or be misrouted. Confirm that filtering rules prevent cross-contamination.
+

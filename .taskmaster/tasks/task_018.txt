@@ -1,0 +1,37 @@
+# Task ID: 18
+# Title: Set Up Document Sets via Admin UI
+# Status: pending
+# Dependencies: 9, 12
+# Priority: medium
+# Description: Research and configure document sets for different content types using Onyx admin interface
+# Details:
+First investigate if Onyx has built-in document set functionality as mentioned in the PRD. If available, access admin UI at http://localhost:3000/admin to create document sets: 'Engineering Docs' (Confluence ENG space + Drive Engineering folder), 'Product Docs' (Confluence PRODUCT space + Drive Product folder), 'General Docs' (all document sources). Use existing Onyx document set functionality.
+
+# Test Strategy:
+Verify Onyx has document set capabilities, document sets created successfully via admin UI, proper document filtering works, can assign different sets to different use cases
+
+# Subtasks:
+## 0. Research Onyx Document Set Functionality [pending]
+### Dependencies: None
+### Description: Investigate whether Onyx has built-in document set functionality as mentioned in the PRD before attempting to create custom sets.
+### Details:
+Review Onyx documentation, explore the admin UI, and check for existing document set features. Look for capabilities to group documents from different sources (Confluence spaces, Google Drive folders) into logical sets. Document findings on what's available out of the box.
+
+## 1. Access the Admin UI [pending]
+### Dependencies: 18.0
+### Description: Log in to the system and navigate to the Admin UI using the appropriate credentials and navigation menu.
+### Details:
+Ensure you have the necessary permissions to access the Admin UI. Use the navigation menu or toolbar to reach the Admin Home or relevant admin section as described in the documentation.
+
+## 2. Create Document Sets [pending]
+### Dependencies: 18.1
+### Description: Within the Admin UI, create new document sets or types as required for your use case.
+### Details:
+Follow the documented process to create document types or sets, specifying names, classes, and storage locations as needed. Configure any required fields or properties for the document sets.
+
+## 3. Verify Filtering Functionality [pending]
+### Dependencies: 18.2
+### Description: Test and validate that filtering functionality works correctly for the created document sets.
+### Details:
+Apply filters to the document sets and confirm that the results match the expected criteria. Check that filtering by different fields or properties returns accurate and relevant documents.
+

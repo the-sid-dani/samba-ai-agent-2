@@ -1,0 +1,37 @@
+# Task ID: 1
+# Title: Fork Onyx Repository and Initial Setup
+# Status: pending
+# Dependencies: None
+# Priority: high
+# Description: Fork Onyx v0.29.1 repository and set up basic project structure with minimal rebranding
+# Details:
+Fork the Onyx v0.29.1 repository to create sambaai repository. Keep all internal structure intact including package names (onyx.*), Docker service names, database schemas, and API routes. Only change user-visible elements. Use git to fork: `git clone https://github.com/danswer-ai/danswer.git sambaai && cd sambaai && git remote rename origin upstream && git remote add origin <new-repo-url>`
+
+# Test Strategy:
+Verify repository structure matches Onyx, all internal references preserved, and basic Docker compose can start without errors
+
+# Subtasks:
+## 1. Fork the Repository [pending]
+### Dependencies: None
+### Description: Create a fork of the original repository under your own account to establish an independent copy for customization.
+### Details:
+Navigate to the repository page and use the 'Fork' button to create your own copy. Then, clone your fork locally using git.
+
+## 2. Rename Remotes [pending]
+### Dependencies: 1.1
+### Description: Update the remote names in your local git repository to distinguish between your fork and the original upstream repository.
+### Details:
+After cloning, rename the default 'origin' remote to your fork and add the original repository as 'upstream' for future updates.
+
+## 3. Verify Internal Structure [pending]
+### Dependencies: 1.2
+### Description: Check the internal structure of the forked repository to ensure all necessary files and directories are present and correctly organized.
+### Details:
+Review the repository for essential files such as Dockerfile, docker-compose.yml, and application source code. Confirm that the structure matches the original and supports Docker-based workflows.
+
+## 4. Test Docker Compose Startup [pending]
+### Dependencies: 1.3
+### Description: Run Docker Compose to verify that the application starts up correctly using the forked repository.
+### Details:
+Use 'docker-compose up' to start the application and check for successful service initialization and absence of errors.
+

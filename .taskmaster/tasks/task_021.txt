@@ -1,0 +1,43 @@
+# Task ID: 21
+# Title: Implement Health Check Endpoints
+# Status: pending
+# Dependencies: 5
+# Priority: medium
+# Description: Add comprehensive health checks for all services
+# Details:
+Implement health check endpoints for API server (/health), verify database connectivity, Vespa index status, Redis cache availability, and Slack bot connection status. Add Docker health check configurations with appropriate intervals and timeouts.
+
+# Test Strategy:
+All health endpoints return 200 status when services healthy, proper error responses when services down, Docker health checks work correctly
+
+# Subtasks:
+## 1. Design Health Endpoints for Each Service [pending]
+### Dependencies: None
+### Description: Define the health check criteria and endpoint structure for each microservice, ensuring coverage of core dependencies (e.g., database, external APIs, service uptime).
+### Details:
+Review each service's architecture to determine what constitutes 'healthy' status. Document the expected response format and HTTP status codes for the /health endpoint.
+
+## 2. Implement Health Endpoints in Codebase [pending]
+### Dependencies: 21.1
+### Description: Add or update the /health HTTP endpoint in each service to perform the defined health checks and return appropriate status and details.
+### Details:
+Use frameworks or libraries (e.g., Spring Boot Actuator, MicroProfile Health) where possible. Ensure endpoints check all critical dependencies and return standardized responses.
+
+## 3. Integrate Docker Health Checks [pending]
+### Dependencies: 21.2
+### Description: Update Dockerfiles or Docker Compose configurations to use the new health endpoints for container health checks.
+### Details:
+Configure Docker's HEALTHCHECK instruction to periodically call the /health endpoint and interpret the results to mark containers as healthy or unhealthy.
+
+## 4. Test Health Endpoints and Docker Integration [pending]
+### Dependencies: 21.3
+### Description: Verify that health endpoints respond correctly under normal and failure scenarios, and that Docker health checks reflect service status accurately.
+### Details:
+Simulate dependency failures (e.g., database down) and confirm that both the endpoint and Docker health status change as expected. Automate tests where possible.
+
+## 5. Test and Validate Error Responses [pending]
+### Dependencies: 21.4
+### Description: Ensure that health endpoints and services return appropriate error responses and status codes for various unhealthy states.
+### Details:
+Check that error payloads are informative and conform to the documented format. Validate that monitoring tools and orchestrators can interpret these responses.
+

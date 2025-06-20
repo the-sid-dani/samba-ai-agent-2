@@ -1,0 +1,31 @@
+# Task ID: 7
+# Title: Investigate Slack Bot Name Configuration
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Research how bot name and mention detection works in Onyx codebase
+# Details:
+Examine backend/onyx/onyxbot/slack/listener.py, config.py, and utils.py to understand bot mention detection logic. Look for hardcoded 'onyxbot' strings, display name configuration, and how @mentions are processed. Document current implementation and identify required changes for @sambaai support.
+
+# Test Strategy:
+Code review and documentation of current bot name handling, test plan for @sambaai mention detection, identify minimal required changes
+
+# Subtasks:
+## 1. Review Relevant Code Files [pending]
+### Dependencies: None
+### Description: Conduct a thorough review of the relevant code files, focusing on functionality, readability, maintainability, and adherence to project requirements. Identify sections related to bot mentions and ensure they meet the intended functionality and coding standards.
+### Details:
+Use established code review checklists to verify that the code implements the required features, handles edge cases, and follows best practices for structure and design. Pay special attention to logic handling bot mentions.
+
+## 2. Document Current Logic [pending]
+### Dependencies: 7.1
+### Description: Create clear documentation outlining the current logic and flow of the reviewed code, especially the parts handling bot mentions. Include explanations of key functions, classes, and interactions.
+### Details:
+Summarize how the code currently works, referencing specific files and functions. Highlight any complex or non-obvious logic, and ensure documentation is accessible for future reference.
+
+## 3. Identify and List Required Changes [pending]
+### Dependencies: 7.2
+### Description: Analyze the documented logic to identify gaps, issues, or areas for improvement. List all required changes to align the code with project requirements and best practices.
+### Details:
+Compare the current implementation against requirements and code review checklists. Note missing features, logic errors, or improvements needed for handling bot mentions, and document these as actionable items.
+

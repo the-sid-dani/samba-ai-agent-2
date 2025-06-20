@@ -1,0 +1,43 @@
+# Task ID: 22
+# Title: Configure Production Docker Compose
+# Status: pending
+# Dependencies: 21
+# Priority: medium
+# Description: Create production-ready Docker Compose configuration
+# Details:
+Create docker-compose.prod.yml with resource limits (API: 4G memory, 2 CPUs; Vespa: 8G memory, 4 CPUs), restart policies, health checks, and proper logging configuration. Add volume mounts for data persistence and log collection.
+
+# Test Strategy:
+Production compose starts successfully, resource limits enforced, services restart automatically on failure, logs properly collected
+
+# Subtasks:
+## 1. Create Production Docker Compose File [pending]
+### Dependencies: None
+### Description: Draft a production-ready docker-compose.yml file, specifying the appropriate version and separating configuration files as needed for modularity and maintainability.
+### Details:
+Ensure the file uses a well-supported Compose version (e.g., '3.8') and consider splitting configurations (e.g., base and prod overrides) for clarity and environment-specific settings.
+
+## 2. Set Resource Limits for Services [pending]
+### Dependencies: 22.1
+### Description: Define CPU and memory limits for each service in the Compose file to prevent resource contention and ensure stable performance.
+### Details:
+Use the 'deploy.resources.limits' section to specify appropriate values for 'cpus' and 'memory' for each service based on application requirements.
+
+## 3. Configure Restart Policies [pending]
+### Dependencies: 22.1
+### Description: Add restart policies to each service to enhance reliability and ensure automatic recovery from failures.
+### Details:
+Use the 'restart' key (e.g., 'always', 'on-failure') for each service to define how containers should behave on exit or failure.
+
+## 4. Add Health Checks to Services [pending]
+### Dependencies: 22.1
+### Description: Implement health check configurations for critical services to monitor their status and enable Compose to manage unhealthy containers.
+### Details:
+Use the 'healthcheck' section to define test commands, intervals, timeouts, and retries for each service that requires monitoring.
+
+## 5. Set Up Logging Configuration [pending]
+### Dependencies: 22.1
+### Description: Configure logging drivers and options for each service to ensure logs are captured, stored, and managed according to production standards.
+### Details:
+Specify the 'logging' section for each service, selecting appropriate drivers (e.g., 'json-file', 'syslog') and options for log rotation and retention.
+

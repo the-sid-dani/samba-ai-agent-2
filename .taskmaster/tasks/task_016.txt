@@ -1,0 +1,31 @@
+# Task ID: 16
+# Title: Configure Default LLM and Embedding Settings
+# Status: pending
+# Dependencies: 4
+# Priority: medium
+# Description: Set up LLM configuration using Onyx defaults with Claude models
+# Details:
+Configure Claude-3-Sonnet for main responses, Claude-3-Haiku for fast queries. Keep Onyx defaults: HYBRID_SEARCH_WEIGHT_MODIFIER=0.7, CHUNK_SIZE=512, TOP_K_CHUNKS=10. Use default embedding model 'all-MiniLM-L6-v2'. Add GEN_AI_API_KEY for Anthropic API access.
+
+# Test Strategy:
+LLM responses generated successfully, embedding model works for document indexing, query latency under 3 seconds, responses include proper citations
+
+# Subtasks:
+## 1. Update LLM Configuration [pending]
+### Dependencies: None
+### Description: Modify the configuration settings of the Large Language Model (LLM) to ensure compatibility with the latest requirements and best practices. This includes updating parameters, ensuring security, and aligning with deployment needs.
+### Details:
+Review current LLM configuration files and documentation. Apply necessary updates to parameters such as model version, temperature, max tokens, and security settings. Ensure changes are tracked and reversible.
+
+## 2. Set and Integrate Embedding Model [pending]
+### Dependencies: 16.1
+### Description: Select and configure the appropriate embedding model to work seamlessly with the updated LLM. Ensure compatibility and optimal performance for downstream tasks.
+### Details:
+Evaluate available embedding models for compatibility with the updated LLM. Update configuration files or code to reference the chosen embedding model. Test integration to confirm embeddings are generated as expected.
+
+## 3. Validate Response Quality and Performance [pending]
+### Dependencies: 16.2
+### Description: Test and validate the quality of LLM responses and embedding outputs to ensure they meet performance and accuracy standards. Address any issues related to model drift or degraded output.
+### Details:
+Develop and execute a validation suite that checks response accuracy, structure, and relevance. Compare outputs against benchmarks or previous versions. Document findings and iterate on configuration if necessary.
+

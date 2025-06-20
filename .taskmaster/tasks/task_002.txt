@@ -1,0 +1,31 @@
+# Task ID: 2
+# Title: Update Web UI Branding
+# Status: pending
+# Dependencies: 15
+# Priority: low
+# Description: Replace all user-visible 'Onyx' references with 'SambaAI' in the web interface. This is a final polish step to be completed after core functionality is working.
+# Details:
+Update text in web/src/app/**/*.tsx files, replacing 'Onyx' with 'SambaAI'. Use find and replace: `find web/src -name '*.tsx' -exec sed -i 's/Onyx/SambaAI/g' {} +`. Focus on user-facing strings only, preserve component names and internal references. Update page titles, headers, and UI labels. This cosmetic change should be performed after the core Slack bot functionality has been tested and verified.
+
+# Test Strategy:
+Manual UI testing to ensure all visible text shows 'SambaAI', no 'Onyx' visible to end users, internal functionality unchanged
+
+# Subtasks:
+## 1. Identify User-Visible Strings in the UI [pending]
+### Dependencies: None
+### Description: Locate and catalog all user-facing text elements in the application's user interface, ensuring only human-readable and localizable strings are included.
+### Details:
+Review UI components, screens, and dialogs to extract all strings visible to users. Exclude internal or non-user-facing strings. Document each string with its location and context.
+
+## 2. Perform String Replacements [pending]
+### Dependencies: 2.1
+### Description: Replace identified user-visible strings with updated text or placeholders, ensuring correct mapping and preservation of string identifiers where applicable.
+### Details:
+Use a systematic approach (such as string keys or IDs) to perform replacements. Ensure that only the intended user-facing strings are modified, and maintain consistency across the UI.
+
+## 3. Manual UI Verification [pending]
+### Dependencies: 2.2
+### Description: Manually review the updated UI to verify that all intended string replacements are correct and that no unintended changes have occurred.
+### Details:
+Test the application in various scenarios to confirm that all user-visible strings display as expected. Check for missed replacements, formatting issues, or context errors.
+

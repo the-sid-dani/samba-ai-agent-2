@@ -1,0 +1,37 @@
+# Task ID: 9
+# Title: Test Confluence Document Indexing
+# Status: pending
+# Dependencies: 8
+# Priority: high
+# Description: Index sample Confluence documents and verify search functionality
+# Details:
+Run Confluence connector to index documents from configured spaces. Monitor indexing process through admin UI or logs. Verify documents appear in Vespa index with proper metadata, embeddings generated correctly, and full-text search works.
+
+# Test Strategy:
+Index at least 10 test documents, verify they appear in search results, test various query types, confirm metadata and source attribution correct
+
+# Subtasks:
+## 1. Run the Connector to Initiate Data Flow [pending]
+### Dependencies: None
+### Description: Start the connector responsible for extracting data from Confluence and sending it to the Vespa index. Ensure the connector is configured correctly and running without errors.
+### Details:
+This step involves launching the connector process, monitoring its logs for startup errors, and confirming it begins processing Confluence data.
+
+## 2. Monitor Indexing Progress [pending]
+### Dependencies: 9.1
+### Description: Track the indexing process to ensure that data from Confluence is being ingested into Vespa. Watch for errors, bottlenecks, or incomplete data transfer.
+### Details:
+Use monitoring tools or logs to verify that documents are being indexed as expected. Address any issues that arise during the data ingestion phase.
+
+## 3. Verify Vespa Index Integrity [pending]
+### Dependencies: 9.2
+### Description: Check the Vespa index to confirm that the expected data from Confluence is present and correctly structured.
+### Details:
+Query the Vespa index directly to validate document counts, field mappings, and data accuracy. Compare with source data in Confluence to ensure completeness.
+
+## 4. Test Search Functionality End-to-End [pending]
+### Dependencies: 9.3
+### Description: Perform integration tests to ensure that search queries against Vespa return accurate and relevant results based on the indexed Confluence data.
+### Details:
+Run search queries simulating real user scenarios, validate results against expected outcomes, and document any discrepancies for further investigation.
+

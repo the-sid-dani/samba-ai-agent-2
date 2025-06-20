@@ -1,0 +1,37 @@
+# Task ID: 11
+# Title: Configure Google Drive Connector
+# Status: pending
+# Dependencies: 10
+# Priority: high
+# Description: Set up Google Drive connector to access specified folders
+# Details:
+Configure Onyx Google Drive connector with service account credentials. Set GOOGLE_DRIVE_FOLDERS=['Engineering', 'Product Specs'] to limit scope. Configure document type filters for Docs, Sheets, and PDFs. Ensure proper permission handling and folder traversal.
+
+# Test Strategy:
+Connector can list files from target folders, respects permission boundaries, successfully indexes sample documents, metadata extraction works
+
+# Subtasks:
+## 1. Update Connector Configuration [pending]
+### Dependencies: None
+### Description: Modify the connector's configuration file or settings to ensure correct connection parameters, working directory, and any required global elements are set according to system requirements.
+### Details:
+This includes editing XML or UI-based configuration fields such as host, working directory, and connection credentials. Ensure the configuration file follows the required structure and includes all necessary tags and properties as per documentation.
+
+## 2. Set Folder Filters [pending]
+### Dependencies: 11.1
+### Description: Configure the connector to monitor or interact with specific folders by setting path and file mask properties or equivalent folder scoping options.
+### Details:
+Specify the directory or directories to be included or excluded, and define file masks or filters to limit the scope to relevant files. This ensures only intended folders and files are processed by the connector.
+
+## 3. Configure Permissions [pending]
+### Dependencies: 11.2
+### Description: Set up and verify the necessary permissions for the connector to access, read, and/or write to the specified folders and files.
+### Details:
+Ensure the connector's service account or credentials have the correct permissions on the file system or remote server. Adjust access control lists or user roles as needed to comply with security requirements.
+
+## 4. Test File Listing Functionality [pending]
+### Dependencies: 11.3
+### Description: Validate the connector's ability to list files in the configured folders, ensuring that folder filters and permissions are correctly applied.
+### Details:
+Perform a test connection and attempt to list files in the target directories. Confirm that only the intended files and folders are visible and accessible, and troubleshoot any errors encountered.
+

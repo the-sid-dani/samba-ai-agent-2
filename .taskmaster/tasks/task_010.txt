@@ -1,0 +1,43 @@
+# Task ID: 10
+# Title: Set Up Google Cloud Project and Service Account
+# Status: pending
+# Dependencies: 6
+# Priority: high
+# Description: Create GCP project and service account for Google Drive access
+# Details:
+Create new GCP project (free tier), enable Google Drive API, Google Docs API, and Google Sheets API. Create service account with domain delegation, download credentials JSON. Configure GOOGLE_APPLICATION_CREDENTIALS path, GOOGLE_ADMIN_EMAIL=admin@samba.tv, and target folder configuration.
+
+# Test Strategy:
+Service account can authenticate, APIs are enabled and accessible, can list Drive files programmatically, permissions properly configured
+
+# Subtasks:
+## 1. Create a New GCP Project [pending]
+### Dependencies: None
+### Description: Set up a new Google Cloud Platform (GCP) project using the Google Cloud Console or gcloud CLI. Specify the project name, project ID, billing account, and organization or folder as required.
+### Details:
+Ensure you have the 'Project Creator' role or equivalent permissions. Navigate to IAM & Admin > Create a Project in the Cloud Console, fill in the required details, and click 'Create'.
+
+## 2. Enable Required APIs [pending]
+### Dependencies: 10.1
+### Description: Enable the necessary APIs for your project, such as Compute Engine, Cloud Storage, or any other service APIs needed for your use case.
+### Details:
+In the Cloud Console, select your project, go to APIs & Services > Library, and enable each required API. Alternatively, use the gcloud CLI to enable APIs.
+
+## 3. Create a Service Account [pending]
+### Dependencies: 10.2
+### Description: Create a service account within the new GCP project to allow programmatic access to Google Cloud resources.
+### Details:
+Go to IAM & Admin > Service Accounts, click 'Create Service Account', provide a name and description, and assign appropriate roles for the required permissions.
+
+## 4. Configure Service Account Credentials [pending]
+### Dependencies: 10.3
+### Description: Generate and download a key file (JSON) for the service account and securely store it for use in applications or automation scripts.
+### Details:
+After creating the service account, select it, go to 'Keys', click 'Add Key', choose 'Create new key', select JSON, and download the credentials file.
+
+## 5. Validate Access and Permissions [pending]
+### Dependencies: 10.4
+### Description: Test the service account credentials by authenticating with Google Cloud and verifying access to the enabled APIs and resources.
+### Details:
+Use the gcloud CLI or client libraries to authenticate with the service account key and perform a simple API call (e.g., list resources) to confirm proper configuration and permissions.
+

@@ -1,0 +1,43 @@
+# Task ID: 14
+# Title: Update Slack Bot Configuration
+# Status: pending
+# Dependencies: 13, 7
+# Priority: high
+# Description: Configure Slack bot tokens and update mention detection for @sambaai
+# Details:
+Add DANSWER_BOT_SLACK_APP_TOKEN and DANSWER_BOT_SLACK_BOT_TOKEN to environment. Update bot mention detection logic if needed based on investigation findings. Ensure BOT_NAME configuration supports 'sambaai' or use environment variable CUSTOM_BOT_NAME=sambaai.
+
+# Test Strategy:
+Bot connects to Slack successfully, responds to @sambaai mentions, works in channels and DMs, no 'onyxbot' references visible to users
+
+# Subtasks:
+## 1. Update Environment Variables [pending]
+### Dependencies: None
+### Description: Review and update the environment variables to ensure all necessary configuration values (such as API domains, skill IDs, and contact information) are externalized and securely managed according to best practices.
+### Details:
+Ensure sensitive data is not stored in environment variables. Use .env files or platform-specific environment management. Avoid storing API credentials directly in environment variables; use secret storage where appropriate.
+
+## 2. Modify Mention Detection Logic [pending]
+### Dependencies: 14.1
+### Description: Update the bot's code to improve or change how it detects and responds to mentions, ensuring it aligns with the new configuration and environment variables.
+### Details:
+Refactor the mention detection logic to reference updated environment variables where needed. Ensure the logic is robust and handles edge cases.
+
+## 3. Test Bot Connection [pending]
+### Dependencies: 14.2
+### Description: Verify that the bot can connect to its platform(s) using the updated environment variables and mention detection logic.
+### Details:
+Run the bot in a controlled environment (e.g., staging) and confirm successful authentication and connection. Check for errors related to environment variable access or mention detection.
+
+## 4. Verify User-Visible References [pending]
+### Dependencies: 14.3
+### Description: Check all user-facing references (such as bot name, contact info, and URLs) to ensure they reflect the updated environment variable values.
+### Details:
+Interact with the bot as a user and confirm that all displayed information is correct and up-to-date. Update any hardcoded references if found.
+
+## 5. Comprehensive Testing and Validation [pending]
+### Dependencies: 14.4
+### Description: Conduct end-to-end testing to ensure all changes work as expected and the bot behaves correctly in all scenarios.
+### Details:
+Test in both development and production-like environments. Validate that environment variables are loaded, mention detection works, and user-visible references are accurate. Document any issues and resolve them before deployment.
+

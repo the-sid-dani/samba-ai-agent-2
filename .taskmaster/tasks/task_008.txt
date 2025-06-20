@@ -1,0 +1,31 @@
+# Task ID: 8
+# Title: Configure Confluence Connector Authentication
+# Status: pending
+# Dependencies: 6
+# Priority: high
+# Description: Set up Confluence connector to access Samba's Atlassian instance
+# Details:
+Configure existing Onyx Confluence connector with CONFLUENCE_BASE_URL=https://samba.atlassian.net/wiki, CONFLUENCE_SPACE_KEYS=['ENG', 'PRODUCT', 'DOCS'], CONFLUENCE_API_TOKEN and CONFLUENCE_USER_EMAIL. Use Atlassian API token authentication. No code changes needed, only configuration.
+
+# Test Strategy:
+Verify connector authenticates successfully, can list Confluence spaces, test document indexing with sample page, search returns Confluence results
+
+# Subtasks:
+## 1. Update Configuration Files [pending]
+### Dependencies: None
+### Description: Review and modify the relevant configuration files to ensure they support the new connector and authentication requirements. This includes specifying endpoints, authentication methods, and any required parameters.
+### Details:
+Identify all configuration files involved in the connector setup. Update them to include necessary fields for API tokens and authentication. Ensure sensitive data is not hardcoded and use environment variables where appropriate.
+
+## 2. Set Up and Secure API Tokens [pending]
+### Dependencies: 8.1
+### Description: Generate, store, and configure API tokens required for connector authentication, following security best practices.
+### Details:
+Generate API tokens using the appropriate authorization server or provider. Store tokens securely using environment variables or a secrets manager. Ensure tokens have appropriate scopes, expiration, and are not exposed in code or logs. Document the process for future maintenance.
+
+## 3. Test Connector Authentication [pending]
+### Dependencies: 8.2
+### Description: Validate that the connector can authenticate using the configured API tokens and that the authentication flow works as expected.
+### Details:
+Perform end-to-end tests to confirm the connector successfully authenticates with the API using the configured tokens. Check for correct handling of token expiration, error responses, and ensure no sensitive data is leaked during the process.
+

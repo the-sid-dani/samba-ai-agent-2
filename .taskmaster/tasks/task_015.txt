@@ -1,0 +1,43 @@
+# Task ID: 15
+# Title: Test Basic Slack Bot Functionality
+# Status: pending
+# Dependencies: 14, 9, 12
+# Priority: high
+# Description: Verify Slack bot responds correctly to mentions and basic queries
+# Details:
+Test bot response to @sambaai mentions in various contexts: channels, DMs, threads. Verify bot can query both Confluence and Google Drive documents. Test basic query patterns and response formatting. Ensure thread replies work correctly.
+
+# Test Strategy:
+Bot responds to @sambaai hello, can answer questions from both Confluence and Drive docs, thread replies work, response includes proper citations
+
+# Subtasks:
+## 1. Test Bot Mentions in Channels [pending]
+### Dependencies: None
+### Description: Verify that the bot correctly detects and responds to direct mentions in public and private Slack channels.
+### Details:
+Send messages mentioning the bot in various channels and confirm appropriate responses are triggered.
+
+## 2. Test Bot Mentions in Direct Messages (DMs) [pending]
+### Dependencies: 15.1
+### Description: Ensure the bot responds correctly to direct messages and group DMs where it is mentioned.
+### Details:
+Initiate DMs and group DMs with the bot, mention it, and verify the bot's reply behavior.
+
+## 3. Test Bot Mentions in Threads [pending]
+### Dependencies: 15.2
+### Description: Check that the bot can detect and respond to mentions within message threads in channels and DMs.
+### Details:
+Mention the bot in threaded replies and confirm it processes and responds to these mentions appropriately.
+
+## 4. Verify Document Query Responses [pending]
+### Dependencies: 15.3
+### Description: Test the bot's ability to process and return accurate responses to document-based queries across all Slack contexts.
+### Details:
+Submit document-related queries via channels, DMs, and threads, and evaluate the relevance and accuracy of the bot's answers.
+
+## 5. Check Citation Formatting in Responses [pending]
+### Dependencies: 15.4
+### Description: Ensure that the bot's responses include citations formatted according to the required standards.
+### Details:
+Review bot responses to document queries and verify that citations are present, correctly formatted, and reference the appropriate sources.
+

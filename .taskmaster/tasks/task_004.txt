@@ -1,0 +1,37 @@
+# Task ID: 4
+# Title: Create Base Environment Configuration
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Set up initial .env configuration file with default Onyx settings and SambaAI customizations
+# Details:
+Create deployment/docker_compose/.env file with AUTH_TYPE=disabled, LOG_LEVEL=info, POSTGRES_PASSWORD=sambaai123, SECRET_KEY=sambaai-secret-key-change-in-prod. Configure LLM settings: GEN_AI_MODEL_PROVIDER=litellm, GEN_AI_MODEL_VERSION=claude-3-sonnet-20240229, FAST_GEN_AI_MODEL_VERSION=claude-3-haiku-20240307. Add placeholder Slack tokens for later configuration.
+
+# Test Strategy:
+Docker compose starts successfully, all services show healthy status, can access http://localhost:3000, database migrations complete without errors
+
+# Subtasks:
+## 1. Create the .env File [pending]
+### Dependencies: None
+### Description: Generate a .env file at the project root to store environment variables required for Docker and application configuration.
+### Details:
+Ensure the .env file is created following Docker best practices, such as not including sensitive information directly and using clear variable names. Reference Docker documentation for environment variable management.
+
+## 2. Set Default Values for Environment Variables [pending]
+### Dependencies: 4.1
+### Description: Populate the .env file with default values for all required environment variables, ensuring interoperability and security.
+### Details:
+Define sensible defaults for each variable (e.g., APP_ENV=production, PORT=8000) and comment each entry for clarity. Avoid hardcoding secrets; use placeholders where necessary.
+
+## 3. Configure LLM (Large Language Model) Settings [pending]
+### Dependencies: 4.2
+### Description: Add and document environment variables specific to LLM configuration, such as model type, API keys, and resource limits.
+### Details:
+Include variables like LLM_MODEL, LLM_API_KEY, and LLM_MAX_TOKENS in the .env file. Ensure these are clearly separated and documented for maintainability.
+
+## 4. Validate Docker Startup with Environment Configuration [pending]
+### Dependencies: 4.3
+### Description: Test Docker Compose startup to ensure all environment variables are correctly loaded and the application starts without errors.
+### Details:
+Run 'docker compose up' and verify that all services read the environment variables as expected. Check logs for missing or misconfigured variables and update documentation as needed.
+

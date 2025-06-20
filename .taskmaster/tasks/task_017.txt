@@ -1,0 +1,43 @@
+# Task ID: 17
+# Title: Create Model Flexibility Abstraction Layer
+# Status: pending
+# Dependencies: 16
+# Priority: low
+# Description: Implement abstraction layer for future model customization
+# Details:
+Create backend/onyx/utils/model_flexibility.py with EmbeddingProvider abstract base class. Implement OnyxDefaultEmbedding class wrapping current functionality. Add FutureCustomEmbedding placeholder. Create factory pattern with get_embedding_provider() function using USE_CUSTOM_EMBEDDINGS environment variable.
+
+# Test Strategy:
+Abstraction layer works with current default models, factory pattern switches correctly based on environment variable, placeholder for future models ready
+
+# Subtasks:
+## 1. Design Abstraction Layer [pending]
+### Dependencies: None
+### Description: Define the core abstraction for the system, ensuring separation of interface and implementation. Establish clear contracts using interfaces or abstract base classes to support extensibility for future models.
+### Details:
+Apply best practices such as consistent abstraction levels, modularity, and clear naming conventions. Document the abstraction's purpose and usage.
+
+## 2. Implement Base and Default Classes [pending]
+### Dependencies: 17.1
+### Description: Develop the base class(es) and at least one default implementation that adhere to the designed abstraction. Ensure these classes encapsulate shared logic and provide extensibility points.
+### Details:
+Follow SOLID principles and favor composition over inheritance where appropriate. Include documentation for each class.
+
+## 3. Add Factory Logic [pending]
+### Dependencies: 17.2
+### Description: Implement a factory mechanism to instantiate the appropriate class based on configuration or runtime parameters. Ensure the factory supports easy integration of future models.
+### Details:
+Use design patterns such as Factory Method or Abstract Factory. Ensure the factory logic is modular and well-documented.
+
+## 4. Integrate Environment Variable Configuration [pending]
+### Dependencies: 17.3
+### Description: Enable the system to select and configure models using environment variables. Ensure the factory logic reads and applies these variables correctly.
+### Details:
+Document the expected environment variables and their effects. Validate and handle missing or invalid configurations gracefully.
+
+## 5. Develop and Execute Tests [pending]
+### Dependencies: 17.4
+### Description: Create comprehensive tests to verify the abstraction, base/default classes, factory logic, and environment variable integration. Ensure tests cover extensibility and edge cases.
+### Details:
+Include unit and integration tests. Use mocks or stubs as needed to isolate components. Document test cases and expected outcomes.
+
