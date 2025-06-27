@@ -1,0 +1,101 @@
+question_id,question_text,category,primary_dimension,tool_type,data_sensitivity,user_scenario,query_context
+1,Where do I submit a request for a new AI tool?,Finding Forms & Links,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+2,I need the AI innovation form - can you give me the link?,Finding Forms & Links,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+3,What's the URL for the tool assessment form?,Finding Forms & Links,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+4,How do I share my success story about using Gemini to save 20 hours?,Finding Forms & Links,query_context,gemini,public_information,general_admin,finding_forms_links
+5,I can't find the incident report form - where is it?,Finding Forms & Links,query_context,unapproved_tool,internal_methods,general_admin,finding_forms_links
+6,Send me all the AI-related forms,Finding Forms & Links,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+7,Where's that Airtable link for tool requests?,Finding Forms & Links,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+8,I need to fill out the forms but don't know which one,Finding Forms & Links,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+9,Can you give me the direct link to the approved tools catalog?,Finding Forms & Links,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+10,What's the SharePoint link for AI training materials?,Finding Forms & Links,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+11,Can I use Claude for analyzing customer viewing patterns?,Tool Approval & Compliance,query_context,unapproved_tool,viewership_metrics,general_admin,compliance_check
+12,Is Perplexity approved for competitive research?,Tool Approval & Compliance,query_context,unapproved_tool,public_information,marketing,compliance_check
+13,We want to use Jasper AI for marketing - how do I get it approved?,Tool Approval & Compliance,query_context,unapproved_tool,public_information,marketing,tool_approval
+14,My team uses ChatGPT already - do we need approval?,Tool Approval & Compliance,query_context,chatgpt,internal_methods,general_admin,compliance_check
+15,Can I use my personal Gemini account for work?,Tool Approval & Compliance,query_context,gemini,internal_methods,general_admin,compliance_check
+16,Is GitHub Copilot allowed if Cursor is already approved?,Tool Approval & Compliance,query_context,unapproved_tool,internal_methods,engineering,tool_approval
+17,What's the difference between using Gemini and ChatGPT for client data?,Tool Approval & Compliance,query_context,gemini,client_information,general_admin,compliance_check
+18,Can contractors use the same AI tools as employees?,Tool Approval & Compliance,query_context,unapproved_tool,public_information,general_admin,compliance_check
+19,I'm a new hire - which AI tools can I start using today?,Tool Approval & Compliance,query_context,unapproved_tool,public_information,general_admin,compliance_check
+20,Is it okay to use ChatGPT if I don't input any company data?,Tool Approval & Compliance,query_context,chatgpt,public_information,general_admin,compliance_check
+21,I accidentally pasted our Q3 viewership data into ChatGPT - what now?,Data Sensitivity & Security,query_context,chatgpt,viewership_metrics,general_admin,data_incident
+22,Can I share anonymized panel data with Claude?,Data Sensitivity & Security,data_sensitivity,unapproved_tool,viewership_metrics,general_admin,compliance_check
+23,Is it safe to analyze competitor campaigns using Gemini?,Data Sensitivity & Security,data_sensitivity,gemini,public_information,marketing,compliance_check
+24,I think I exposed client names to an AI tool - help!,Data Sensitivity & Security,query_context,unapproved_tool,client_information,general_admin,data_incident
+25,What counts as 'sensitive data' for AI tools?,Data Sensitivity & Security,data_sensitivity,unapproved_tool,internal_methods,general_admin,compliance_check
+26,Can I use real client names in approved tools?,Data Sensitivity & Security,data_sensitivity,gemini,client_information,general_admin,compliance_check
+27,Someone on my team shared our methodology with ChatGPT,Data Sensitivity & Security,query_context,chatgpt,internal_methods,general_admin,data_incident
+28,Is historical viewership data from 2020 considered sensitive?,Data Sensitivity & Security,data_sensitivity,unapproved_tool,viewership_metrics,general_admin,compliance_check
+29,Can I upload our financial reports to NotebookLM?,Data Sensitivity & Security,data_sensitivity,notebooklm,financial_data,general_admin,compliance_check
+30,What's the protocol if a client's data was exposed?,Data Sensitivity & Security,query_context,unapproved_tool,client_information,general_admin,data_incident
+31,I'm in engineering - what's our AI code generation target?,Department-Specific Use Cases,user_scenario,cursor,internal_methods,engineering,best_practices
+32,How can marketing use AI for State of Viewership reports?,Department-Specific Use Cases,user_scenario,gemini,viewership_metrics,marketing,best_practices
+33,What AI tools should sales use for proposal generation?,Department-Specific Use Cases,user_scenario,gemini,client_information,sales,tool_approval
+34,Can operations automate campaign setup with AI?,Department-Specific Use Cases,user_scenario,unapproved_tool,client_information,operations,innovation_idea
+35,Finance wants to use AI for forecasting - what's allowed?,Department-Specific Use Cases,user_scenario,gemini,financial_data,general_admin,compliance_check
+36,HR is asking about AI for recruitment - any approved tools?,Department-Specific Use Cases,user_scenario,unapproved_tool,public_information,general_admin,tool_approval
+37,Product team needs AI for user story generation,Department-Specific Use Cases,user_scenario,gemini,internal_methods,general_admin,best_practices
+38,Data science wants specialized AI tools beyond the basics,Department-Specific Use Cases,user_scenario,unapproved_tool,viewership_metrics,general_admin,tool_approval
+39,Legal needs AI for contract review - options?,Department-Specific Use Cases,user_scenario,unapproved_tool,client_information,general_admin,tool_approval
+40,Can customer success use AI for client communications?,Department-Specific Use Cases,user_scenario,gemini,client_information,general_admin,compliance_check
+41,What's the best way to prompt Gemini for data analysis?,Best Practices & How-To,query_context,gemini,viewership_metrics,general_admin,best_practices
+42,How do I set up MCP with Claude Desktop?,Best Practices & How-To,query_context,unapproved_tool,internal_methods,engineering,best_practices
+43,Should I tell clients we used AI to create their report?,Best Practices & How-To,query_context,gemini,client_information,sales,best_practices
+44,What's the recommended way to fact-check AI outputs?,Best Practices & How-To,query_context,unapproved_tool,public_information,general_admin,best_practices
+45,How much context should I give AI tools?,Best Practices & How-To,query_context,unapproved_tool,internal_methods,general_admin,best_practices
+46,Can I save client data in Claude Projects?,Best Practices & How-To,data_sensitivity,unapproved_tool,client_information,general_admin,compliance_check
+47,What's the proper way to anonymize data for AI?,Best Practices & How-To,data_sensitivity,unapproved_tool,viewership_metrics,general_admin,best_practices
+48,How do I integrate Cursor with our codebase?,Best Practices & How-To,query_context,cursor,internal_methods,engineering,best_practices
+49,Best practices for using AI in client presentations?,Best Practices & How-To,query_context,gemini,client_information,sales,best_practices
+50,How often should I verify AI-generated metrics?,Best Practices & How-To,query_context,unapproved_tool,viewership_metrics,general_admin,best_practices
+51,When is the next AI training session?,Training & Support,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+52,Who's the AI champion for marketing?,Training & Support,query_context,unapproved_tool,public_information,marketing,finding_forms_links
+53,I need 1-on-1 help with workflow automation,Training & Support,query_context,unapproved_tool,internal_methods,general_admin,innovation_idea
+54,Is there a Slack channel for AI questions?,Training & Support,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+55,Where can I find AI prompt templates?,Training & Support,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+56,Does SambaTV offer Cursor training for developers?,Training & Support,query_context,cursor,internal_methods,engineering,finding_forms_links
+57,Who do I contact for emergency AI support?,Training & Support,query_context,unapproved_tool,internal_methods,general_admin,finding_forms_links
+58,Are there video tutorials for using Gemini?,Training & Support,query_context,gemini,public_information,general_admin,finding_forms_links
+59,Can my team get custom AI training?,Training & Support,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+60,How do I become an AI champion?,Training & Support,query_context,unapproved_tool,public_information,general_admin,innovation_idea
+61,ChatGPT is down - can I use Bard temporarily?,Edge Cases & Ambiguous,query_context,chatgpt,internal_methods,general_admin,compliance_check
+62,A client is asking us to use their AI tool - is that allowed?,Edge Cases & Ambiguous,query_context,unapproved_tool,client_information,sales,compliance_check
+63,Can I use AI to generate code that accesses our databases?,Edge Cases & Ambiguous,data_sensitivity,cursor,internal_methods,engineering,compliance_check
+64,Is it okay to use AI for personal learning during work hours?,Edge Cases & Ambiguous,query_context,unapproved_tool,public_information,general_admin,compliance_check
+65,What if an approved tool adds a feature we haven't reviewed?,Edge Cases & Ambiguous,query_context,gemini,internal_methods,general_admin,compliance_check
+66,Can I share AI-generated content on LinkedIn?,Edge Cases & Ambiguous,query_context,gemini,public_information,marketing,compliance_check
+67,Is voice-to-text AI covered by the policy?,Edge Cases & Ambiguous,tool_type,unapproved_tool,public_information,general_admin,compliance_check
+68,What about AI browser extensions?,Edge Cases & Ambiguous,tool_type,unapproved_tool,internal_methods,general_admin,compliance_check
+69,Can I use AI to translate client documents?,Edge Cases & Ambiguous,query_context,unapproved_tool,client_information,general_admin,compliance_check
+70,Are AI mobile apps treated differently?,Edge Cases & Ambiguous,tool_type,unapproved_tool,public_information,general_admin,compliance_check
+71,How long does tool approval actually take?,Process & Timeline,query_context,unapproved_tool,public_information,general_admin,tool_approval
+72,What happens after I submit the assessment form?,Process & Timeline,query_context,unapproved_tool,public_information,general_admin,tool_approval
+73,Can I expedite approval for a critical project?,Process & Timeline,query_context,unapproved_tool,internal_methods,general_admin,tool_approval
+74,Who reviews the AI tool requests?,Process & Timeline,query_context,unapproved_tool,public_information,general_admin,tool_approval
+75,What criteria do you use to approve tools?,Process & Timeline,query_context,unapproved_tool,public_information,general_admin,tool_approval
+76,How often is the approved tools list updated?,Process & Timeline,query_context,unapproved_tool,public_information,general_admin,compliance_check
+77,When will ChatGPT Enterprise be evaluated?,Process & Timeline,query_context,chatgpt,public_information,general_admin,tool_approval
+78,What's the process if a tool is rejected?,Process & Timeline,query_context,unapproved_tool,public_information,general_admin,tool_approval
+79,Can I appeal a tool rejection?,Process & Timeline,query_context,unapproved_tool,public_information,general_admin,tool_approval
+80,How do I check the status of my request?,Process & Timeline,query_context,unapproved_tool,public_information,general_admin,finding_forms_links
+81,I want to build a custom AI workflow - where do I start?,Innovation & Advanced Use,query_context,unapproved_tool,internal_methods,operations,innovation_idea
+82,Can we create Slack bots using approved AI?,Innovation & Advanced Use,query_context,gemini,internal_methods,operations,innovation_idea
+83,Is it possible to connect AI to our internal APIs?,Innovation & Advanced Use,data_sensitivity,unapproved_tool,internal_methods,engineering,innovation_idea
+84,I have an idea for AI-powered reporting automation,Innovation & Advanced Use,query_context,gemini,viewership_metrics,operations,innovation_idea
+85,Can we use AI for predictive analytics on viewership?,Innovation & Advanced Use,data_sensitivity,unapproved_tool,viewership_metrics,general_admin,innovation_idea
+86,What about using AI for real-time campaign optimization?,Innovation & Advanced Use,query_context,unapproved_tool,client_information,operations,innovation_idea
+87,Could we build an AI assistant for client queries?,Innovation & Advanced Use,query_context,unapproved_tool,client_information,sales,innovation_idea
+88,Is federated learning allowed under the policy?,Innovation & Advanced Use,query_context,unapproved_tool,viewership_metrics,engineering,compliance_check
+89,Can we fine-tune models on our data?,Innovation & Advanced Use,data_sensitivity,unapproved_tool,viewership_metrics,engineering,compliance_check
+90,What's the policy on AI-generated insights for clients?,Innovation & Advanced Use,query_context,gemini,client_information,sales,compliance_check
+91,What's better for coding - Cursor or Copilot?,Comparison & Migration,tool_type,cursor,internal_methods,engineering,tool_approval
+92,Should we switch from ChatGPT to Gemini?,Comparison & Migration,tool_type,chatgpt,internal_methods,general_admin,tool_approval
+93,Compare NotebookLM vs Claude for research,Comparison & Migration,tool_type,notebooklm,public_information,general_admin,tool_approval
+94,Which tool is best for analyzing large datasets?,Comparison & Migration,query_context,unapproved_tool,viewership_metrics,general_admin,tool_approval
+95,Can I use multiple AI tools for the same project?,Comparison & Migration,query_context,unapproved_tool,internal_methods,general_admin,compliance_check
+96,What's the advantage of enterprise vs personal accounts?,Comparison & Migration,query_context,unapproved_tool,internal_methods,general_admin,compliance_check
+97,Why Cursor instead of other coding assistants?,Comparison & Migration,tool_type,cursor,internal_methods,engineering,tool_approval
+98,Which AI tool has the best security for client data?,Comparison & Migration,data_sensitivity,unapproved_tool,client_information,general_admin,tool_approval
+99,Should every department use the same AI tools?,Comparison & Migration,query_context,unapproved_tool,public_information,general_admin,best_practices
+100,What's the roadmap for AI tool adoption?,Comparison & Migration,query_context,unapproved_tool,public_information,general_admin,innovation_idea

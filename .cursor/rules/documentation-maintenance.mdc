@@ -1,0 +1,147 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# SambaAI Documentation Maintenance Guide
+
+This rule ensures all documentation remains accurate, comprehensive, and developer-friendly for the SambaAI project.
+
+## **Documentation Sources and Structure**
+
+### **Primary Documentation Files**
+- **Project Overview**: [CLAUDE.md](mdc:CLAUDE.md) - Main project context and development guide
+- **Contributing Guide**: [sambaai/CONTRIBUTING.md](mdc:sambaai/CONTRIBUTING.md) - Development setup and workflow
+- **Frontend Package**: [sambaai/web/package.json](mdc:sambaai/web/package.json) - Technology stack and dependencies
+- **Docker Configuration**: [sambaai/deployment/docker_compose/docker-compose.dev.yml](mdc:sambaai/deployment/docker_compose/docker-compose.dev.yml) - Service architecture
+
+### **Key Architecture Files to Monitor**
+- **Main Backend Entry**: [sambaai/backend/onyx/main.py](mdc:sambaai/backend/onyx/main.py) - FastAPI application structure
+- **Slack Bot Implementation**: [sambaai/backend/onyx/onyxbot/slack/](mdc:sambaai/backend/onyx/onyxbot/slack) - Bot architecture and customization points
+- **Confluence Connector**: [sambaai/backend/onyx/connectors/confluence/](mdc:sambaai/backend/onyx/connectors/confluence) - Primary document source integration
+- **Environment Configuration**: [sambaai/deployment/docker_compose/.env](mdc:sambaai/deployment/docker_compose/.env) - Critical configuration settings
+
+## **Documentation Maintenance Rules**
+
+### **When Code Changes Occur**
+- **✅ Update [CLAUDE.md](mdc:CLAUDE.md) when:**
+  - Core architecture changes
+  - New services or ports are added
+  - Environment variables change
+  - Development workflow modifications
+  - New connector integrations
+
+- **✅ Update Confluence Documentation when:**
+  - New features are implemented
+  - API endpoints change
+  - Database schema modifications
+  - Deployment procedures change
+  - Troubleshooting steps are discovered
+
+### **Key Files to Watch for Documentation Impact**
+- **[sambaai/backend/onyx/configs/](mdc:sambaai/backend/onyx/configs)** - Configuration changes affect setup docs
+- **[sambaai/backend/requirements/](mdc:sambaai/backend/requirements)** - Dependency changes affect installation docs
+- **[sambaai/backend/alembic/versions/](mdc:sambaai/backend/alembic/versions)** - Database changes affect deployment docs
+- **[sambaai/web/src/app/](mdc:sambaai/web/src/app)** - Frontend changes affect user interface docs
+
+## **Documentation Update Patterns**
+
+### **For New Features**
+```markdown
+## Feature: [Feature Name]
+
+**Purpose**: Brief description of what this feature does
+**Architecture**: How it fits into the system
+**Key Files**: 
+- [file1.py](mdc:path/to/file1.py) - Main implementation
+- [file2.tsx](mdc:path/to/file2.tsx) - Frontend component
+**Configuration**: Required environment variables or settings
+**Usage**: How developers interact with this feature
+```
+
+### **For API Changes**
+- Document new endpoints with examples
+- Update authentication requirements
+- Note any breaking changes
+- Include curl examples or Postman collections
+
+### **For Environment/Config Changes**
+- Update [sambaai/deployment/docker_compose/.env](mdc:sambaai/deployment/docker_compose/.env) documentation
+- Explain the purpose of new variables
+- Provide example values
+- Note any security considerations
+
+## **Documentation Consistency Standards**
+
+### **Code References**
+- **✅ DO**: Use `[filename.ext](mdc:path/to/file)` for file references
+- **✅ DO**: Include line numbers for specific code sections
+- **✅ DO**: Reference actual implementation files, not theoretical examples
+
+### **Architecture Diagrams**
+- Update service diagrams when new components are added
+- Include port numbers and communication flows
+- Show data flow between services
+- Document external dependencies
+
+### **Command Examples**
+- **✅ Provide working examples**:
+  ```bash
+  # Start development environment
+  cd sambaai/deployment/docker_compose
+  docker compose -f docker-compose.dev.yml -p onyx-stack up -d
+  ```
+- **✅ Include expected outputs** when helpful
+- **✅ Note platform differences** (Windows vs Unix)
+
+## **Regular Documentation Audits**
+
+### **Monthly Tasks**
+- Verify all commands in [sambaai/CONTRIBUTING.md](mdc:sambaai/CONTRIBUTING.md) still work
+- Check that environment variables in documentation match [sambaai/deployment/docker_compose/.env](mdc:sambaai/deployment/docker_compose/.env)
+- Update dependency versions in documentation to match [sambaai/web/package.json](mdc:sambaai/web/package.json) and [sambaai/backend/requirements/](mdc:sambaai/backend/requirements)
+
+### **After Major Changes**
+- Update Confluence "SambaAI Developer Documentation" page
+- Review and update [CLAUDE.md](mdc:CLAUDE.md) project overview
+- Verify setup instructions still work from scratch
+- Update troubleshooting sections with new common issues
+
+## **Documentation Location Guidelines**
+
+### **Internal Documentation** (this repository)
+- **[CLAUDE.md](mdc:CLAUDE.md)**: Project context for AI and developers
+- **[sambaai/CONTRIBUTING.md](mdc:sambaai/CONTRIBUTING.md)**: Setup and development workflow
+- **Code comments**: Implementation details and business logic
+
+### **External Documentation** (Confluence ATF space)
+- **"Coding Projects/SambaAI Developer Documentation"**: Comprehensive developer guide
+- **Architecture overviews**: High-level system design
+- **User guides**: How to use the system features
+- **Deployment guides**: Production setup and maintenance
+
+## **Documentation Quality Checklist**
+
+- **✅ Accuracy**: All commands and code examples work
+- **✅ Completeness**: Covers all major features and workflows  
+- **✅ Clarity**: Clear for developers new to the project
+- **✅ Currency**: Updated within last 30 days of related code changes
+- **✅ Accessibility**: Available to all team members who need it
+
+## **Emergency Documentation Updates**
+
+### **Critical Changes Requiring Immediate Doc Updates**
+- Security vulnerability fixes
+- Breaking API changes
+- Database migration requirements
+- Environment variable changes that break deployment
+- Service port or URL changes
+
+### **Process for Critical Updates**
+1. Update code and test
+2. Immediately update [CLAUDE.md](mdc:CLAUDE.md) with changes
+3. Update Confluence documentation within 24 hours
+4. Notify team of documentation changes
+5. Verify all related documentation sections are consistent
+
+Remember: Documentation is code. It should be versioned, reviewed, and maintained with the same rigor as the implementation it describes.

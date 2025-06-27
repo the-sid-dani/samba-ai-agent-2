@@ -1,0 +1,63 @@
+# SambaAI LLM Provider & Slack Bot Troubleshooting PRD
+
+## Project Overview
+Fix multiple critical issues in the SambaAI platform setup to ensure proper LLM provider configuration, model availability, and Slack bot functionality.
+
+## Current Issues
+
+### 1. LLM Provider Configuration Problems
+- **Gemini Provider Missing**: No option to add Google Gemini as LLM provider in admin interface
+- **Anthropic Models Not Available**: Despite adding Anthropic provider, Claude models not appearing in assistant dropdown
+- **OpenAI Model Selection Ignored**: Unselected OpenAI models still appear in assistant interface
+- **Provider Configuration Sync**: Changes in .env file not reflecting properly in web interface
+
+### 2. Slack Bot Not Responding
+- **No Message Responses**: Slack bot not responding to messages despite successful socket connection
+- **Channel Configuration**: Bot configured for specific channel but not processing events
+- **Model Integration**: Potential issue with bot using configured LLM models
+
+### 3. Environment Configuration Issues
+- **Model Provider Setting**: Changed to OpenAI in .env but need to verify proper integration
+- **API Key Management**: Multiple API keys configured but providers may not be using them correctly
+
+## Requirements
+
+### R1: Complete LLM Provider Setup
+- Add Google Gemini as available LLM provider option
+- Ensure Anthropic Claude models appear in assistant model dropdown
+- Implement proper model selection filtering (respect user's model deselection)
+- Synchronize .env configuration with web interface provider settings
+
+### R2: Fix Slack Bot Functionality
+- Diagnose why bot is not responding to messages despite connection
+- Verify channel-specific configuration is working
+- Ensure bot can access and use configured LLM models
+- Test end-to-end message processing and response generation
+
+### R3: Environment & Configuration Synchronization
+- Ensure .env file changes are properly loaded by all services
+- Verify API keys are accessible to respective providers
+- Confirm model provider selection is respected across all interfaces
+
+## Technical Specifications
+
+### LLM Providers to Support:
+- **OpenAI**: GPT-4.1, GPT-4.1-mini, GPT-4o, GPT-4o-mini, o3, o3-mini models
+- **Anthropic**: Claude 3.5 Sonnet, Claude 3 Haiku, Claude Opus models  
+- **Google Gemini**: Gemini 2.5 Pro, Gemini 2.5 Flash models
+
+### Slack Bot Requirements:
+- Socket mode connection working
+- Message event processing functional
+- LLM integration for response generation
+- Channel-specific assistant configuration respected
+
+## Success Criteria
+1. All three LLM providers (OpenAI, Anthropic, Gemini) available in admin interface
+2. Model selection in assistants respects provider filtering and user deselection
+3. Slack bot responds to messages using configured assistant and models
+4. Environment configuration changes reflected across all interfaces
+5. End-to-end testing: message in Slack → bot processes → LLM generates response → response posted
+
+## Priority
+**HIGH** - Critical functionality blocking normal platform usage 
