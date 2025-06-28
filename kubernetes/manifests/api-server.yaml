@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sambaai-api
+  namespace: sambaai
+  labels:
+    app: sambaai-api
+    component: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sambaai-api
+  template:
+    metadata:
+      labels:
+        app: sambaai-api
+        component: backend
+    spec:
+      serviceAccountName: sambaai-ksa
+      containers:
+      - name: api-server
+        image: gcr.io/PROJECT_ID/sambaai-api:IMAGE_TAG
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: LOG_LEVEL
+          value: "info"
+        - name: AUTH_TYPE
+          value: "google_oauth"
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-db-secret
+              key: host
+        - name: POSTGRES_PORT
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-db-secret
+              key: port
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-db-secret
+              key: database
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-db-secret
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-db-secret
+              key: password
+        - name: REDIS_HOST
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-redis-secret
+              key: host
+        - name: REDIS_PORT
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-redis-secret
+              key: port
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-redis-secret
+              key: auth
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: sambaai-app-secret
+              key: secret-key
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sambaai-api-service
+  namespace: sambaai
+  labels:
+    app: sambaai-api
+spec:
+  selector:
+    app: sambaai-api
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  type: ClusterIP 

@@ -1,0 +1,167 @@
+name: Deploy SambaAI to GKE
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+  # Allow manual triggering
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: ai-workflows-459123
+  GKE_CLUSTER: sambaai-gke-cluster
+  GKE_ZONE: us-central1-c
+  REGISTRY: gcr.io
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+    
+    # Only deploy on main branch pushes
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Setup Google Cloud CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ env.PROJECT_ID }}
+
+    - name: Configure Docker to use gcloud as a credential helper
+      run: |-
+        gcloud --quiet auth configure-docker
+
+    - name: Get GKE credentials
+      run: |-
+        gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+
+    # Build and push API server image
+    - name: Build and Push API Server
+      run: |-
+        cd sambaai/backend
+        docker build -t "$REGISTRY/$PROJECT_ID/sambaai-api:$GITHUB_SHA" \
+          -t "$REGISTRY/$PROJECT_ID/sambaai-api:latest" .
+        docker push "$REGISTRY/$PROJECT_ID/sambaai-api:$GITHUB_SHA"
+        docker push "$REGISTRY/$PROJECT_ID/sambaai-api:latest"
+
+    # Build and push Web server image  
+    - name: Build and Push Web Server
+      run: |-
+        cd sambaai/web
+        docker build -t "$REGISTRY/$PROJECT_ID/sambaai-web:$GITHUB_SHA" \
+          -t "$REGISTRY/$PROJECT_ID/sambaai-web:latest" .
+        docker push "$REGISTRY/$PROJECT_ID/sambaai-web:$GITHUB_SHA"
+        docker push "$REGISTRY/$PROJECT_ID/sambaai-web:latest"
+
+    # Build and push Background worker image
+    - name: Build and Push Background Worker
+      run: |-
+        cd sambaai/backend
+        docker build -f Dockerfile.background -t "$REGISTRY/$PROJECT_ID/sambaai-background:$GITHUB_SHA" \
+          -t "$REGISTRY/$PROJECT_ID/sambaai-background:latest" .
+        docker push "$REGISTRY/$PROJECT_ID/sambaai-background:$GITHUB_SHA"
+        docker push "$REGISTRY/$PROJECT_ID/sambaai-background:latest"
+
+    # Deploy to GKE
+    - name: Deploy to GKE
+      run: |-
+        # Replace image tags in manifests
+        sed -i "s|IMAGE_TAG|$GITHUB_SHA|g" kubernetes/manifests/*.yaml
+        sed -i "s|PROJECT_ID|$PROJECT_ID|g" kubernetes/manifests/*.yaml
+        
+        # Apply Kubernetes manifests
+        kubectl apply -f kubernetes/manifests/ --namespace=sambaai
+        
+        # Wait for rollout to complete
+        kubectl rollout status deployment/sambaai-api --namespace=sambaai --timeout=600s
+        kubectl rollout status deployment/sambaai-web --namespace=sambaai --timeout=600s
+        kubectl rollout status deployment/sambaai-background --namespace=sambaai --timeout=600s
+        
+        # Verify deployment
+        kubectl get services --namespace=sambaai
+
+    - name: Notify deployment status
+      run: |-
+        echo "🚀 SambaAI deployed successfully to GKE!"
+        echo "Commit: $GITHUB_SHA"
+        echo "Cluster: $GKE_CLUSTER"
+        echo "Namespace: sambaai"
+
+  # Test job (runs on all branches and PRs)
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |-
+        cd sambaai/backend
+        pip install -r requirements/dev.txt
+
+    - name: Run Python tests
+      run: |-
+        cd sambaai/backend
+        python -m pytest tests/ -v --tb=short
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: sambaai/web/package-lock.json
+
+    - name: Install Node dependencies
+      run: |-
+        cd sambaai/web
+        npm ci
+
+    - name: Run TypeScript/React tests
+      run: |-
+        cd sambaai/web
+        npm run test:ci
+
+    - name: Build web application
+      run: |-
+        cd sambaai/web
+        npm run build
+
+  # Security scanning job
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+      
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif' 

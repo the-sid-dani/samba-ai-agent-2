@@ -1,0 +1,60 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sambaai-ingress
+  namespace: sambaai
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "sambaai-ip"
+    networking.gke.io/managed-certificates: "sambaai-ssl-cert"
+    kubernetes.io/ingress.allow-http: "false"
+  labels:
+    app: sambaai
+spec:
+  rules:
+  - host: sambaai.example.com  # Replace with your actual domain
+    http:
+      paths:
+      - path: /api/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: sambaai-api-service
+            port:
+              number: 80
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: sambaai-web-service
+            port:
+              number: 80
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: sambaai-ssl-cert
+  namespace: sambaai
+spec:
+  domains:
+    - sambaai.example.com  # Replace with your actual domain
+---
+# Alternative LoadBalancer service for immediate access via IP
+apiVersion: v1
+kind: Service
+metadata:
+  name: sambaai-loadbalancer
+  namespace: sambaai
+  labels:
+    app: sambaai
+  annotations:
+    cloud.google.com/load-balancer-type: "External"
+spec:
+  type: LoadBalancer
+  selector:
+    app: sambaai-web
+  ports:
+  - name: http
+    port: 80
+    targetPort: 3000
+    protocol: TCP 
