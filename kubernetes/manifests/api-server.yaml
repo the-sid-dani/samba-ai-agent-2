@@ -17,10 +17,17 @@ spec:
         app: sambaai-api
         component: backend
     spec:
-      serviceAccountName: sambaai-ksa
+
       containers:
       - name: api-server
-        image: gcr.io/PROJECT_ID/sambaai-api:IMAGE_TAG
+        image: onyxdotapp/onyx-backend:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          alembic upgrade head &&
+          echo "Starting Onyx Api Server" &&
+          uvicorn onyx.main:app --host 0.0.0.0 --port 8080
         ports:
         - containerPort: 8080
           name: http
@@ -32,48 +39,80 @@ spec:
         - name: POSTGRES_HOST
           valueFrom:
             secretKeyRef:
-              name: sambaai-db-secret
+              name: postgres-secret
               key: host
         - name: POSTGRES_PORT
           valueFrom:
             secretKeyRef:
-              name: sambaai-db-secret
+              name: postgres-secret
               key: port
         - name: POSTGRES_DB
           valueFrom:
             secretKeyRef:
-              name: sambaai-db-secret
+              name: postgres-secret
               key: database
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
-              name: sambaai-db-secret
+              name: postgres-secret
               key: username
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: sambaai-db-secret
+              name: postgres-secret
               key: password
         - name: REDIS_HOST
           valueFrom:
             secretKeyRef:
-              name: sambaai-redis-secret
+              name: redis-secret
               key: host
         - name: REDIS_PORT
           valueFrom:
             secretKeyRef:
-              name: sambaai-redis-secret
+              name: redis-secret
               key: port
-        - name: REDIS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sambaai-redis-secret
-              key: auth
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: sambaai-app-secret
-              key: secret-key
+              name: app-secrets
+              key: secret_key
+        - name: REDIS_DB
+          valueFrom:
+            secretKeyRef:
+              name: app-config
+              key: redis_db
+        - name: DOCUMENT_ENCODER_MODEL
+          valueFrom:
+            secretKeyRef:
+              name: app-config
+              key: embedding_model
+        - name: DOC_EMBEDDING_DIM
+          valueFrom:
+            secretKeyRef:
+              name: app-config
+              key: doc_embedding_dim
+        - name: NORMALIZE_EMBEDDINGS
+          valueFrom:
+            secretKeyRef:
+              name: app-config
+              key: normalize_embeddings
+        - name: ENCRYPTION_KEY_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: app-config
+              key: encryption_key
+        - name: ENABLE_PAID_ENTERPRISE_EDITION_FEATURES
+          valueFrom:
+            secretKeyRef:
+              name: app-config
+              key: enable_paid_enterprise
+        - name: DISABLE_ONYX_WEB_UI
+          valueFrom:
+            secretKeyRef:
+              name: app-config
+              key: disable_onyx_web_ui
+        - name: VESPA_HOST
+          value: "sambaai-vespa-service"
         resources:
           requests:
             memory: "1Gi"

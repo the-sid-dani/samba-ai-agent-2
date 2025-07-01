@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: web-server
-        image: gcr.io/PROJECT_ID/sambaai-web:IMAGE_TAG
+        image: onyxdotapp/onyx-web-server:latest
         ports:
         - containerPort: 3000
           name: http
@@ -28,6 +28,20 @@ spec:
           value: "production"
         - name: NEXT_PUBLIC_API_URL
           value: "http://sambaai-api-service.sambaai.svc.cluster.local"
+        - name: INTERNAL_URL
+          value: "http://sambaai-api-service.sambaai.svc.cluster.local"
+        - name: WEB_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: WEB_DOMAIN
+              optional: true
+        - name: THEME_IS_DARK
+          value: "false"
+        - name: DISABLE_LLM_DOC_RELEVANCE
+          value: "false"
+        - name: ENABLE_PAID_ENTERPRISE_EDITION_FEATURES
+          value: "false"
         resources:
           requests:
             memory: "256Mi"

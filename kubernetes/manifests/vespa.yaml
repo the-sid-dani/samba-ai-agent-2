@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sambaai-vespa
+  namespace: sambaai
+  labels:
+    app: sambaai-vespa
+    component: search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sambaai-vespa
+  template:
+    metadata:
+      labels:
+        app: sambaai-vespa
+        component: search
+    spec:
+      containers:
+      - name: vespa
+        image: vespaengine/vespa:8.526.15
+        ports:
+        - containerPort: 19071
+          name: http
+        - containerPort: 8081
+          name: admin
+        env:
+        - name: VESPA_SKIP_UPGRADE_CHECK
+          value: "true"
+        - name: VESPA_IGNORE_NOT_ENOUGH_MEMORY
+          value: "true"
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: vespa-data
+          mountPath: /opt/vespa/var
+      volumes:
+      - name: vespa-data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sambaai-vespa-service
+  namespace: sambaai
+  labels:
+    app: sambaai-vespa
+spec:
+  selector:
+    app: sambaai-vespa
+  ports:
+  - name: http
+    port: 19071
+    targetPort: 19071
+    protocol: TCP
+  - name: admin
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  type: ClusterIP 

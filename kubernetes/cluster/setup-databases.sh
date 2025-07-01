@@ -59,11 +59,9 @@ gcloud sql instances create $DB_INSTANCE_NAME \
     --database-version=POSTGRES_15 \
     --tier=db-custom-2-8192 \
     --region=$REGION \
-    --network=default \
-    --no-assign-ip \
+    --assign-ip \
     --database-flags=max_connections=200 \
     --backup-start-time=03:00 \
-    --enable-bin-log \
     --maintenance-window-day=SUN \
     --maintenance-window-hour=04 \
     --storage-type=SSD \
@@ -94,8 +92,8 @@ gcloud redis instances create $REDIS_INSTANCE_NAME \
     --network=default \
     --redis-version=redis_7_0 \
     --enable-auth \
-    --maintenance-policy-day=sunday \
-    --maintenance-policy-start-time-hour=4
+    --maintenance-window-day=sunday \
+    --maintenance-window-hour=4
 
 print_status "Redis instance created"
 
@@ -103,7 +101,7 @@ print_status "Redis instance created"
 print_info "Getting connection details..."
 
 DB_CONNECTION_NAME=$(gcloud sql instances describe $DB_INSTANCE_NAME --format="value(connectionName)")
-DB_PRIVATE_IP=$(gcloud sql instances describe $DB_INSTANCE_NAME --format="value(ipAddresses[0].ipAddress)")
+DB_IP=$(gcloud sql instances describe $DB_INSTANCE_NAME --format="value(ipAddresses[0].ipAddress)")
 REDIS_HOST=$(gcloud redis instances describe $REDIS_INSTANCE_NAME --region=$REGION --format="value(host)")
 REDIS_PORT=$(gcloud redis instances describe $REDIS_INSTANCE_NAME --region=$REGION --format="value(port)")
 REDIS_AUTH=$(gcloud redis instances get-auth-string $REDIS_INSTANCE_NAME --region=$REGION)
@@ -113,7 +111,7 @@ print_info "Creating Kubernetes secrets..."
 
 kubectl create secret generic sambaai-db-secret \
     --namespace=sambaai \
-    --from-literal=host=$DB_PRIVATE_IP \
+    --from-literal=host=$DB_IP \
     --from-literal=port=5432 \
     --from-literal=database=$DB_NAME \
     --from-literal=username=$DB_USER \
@@ -137,7 +135,7 @@ cat > kubernetes/cluster/database-config.env << EOF
 # Generated on $(date)
 
 # PostgreSQL (Cloud SQL)
-DB_HOST=$DB_PRIVATE_IP
+DB_HOST=$DB_IP
 DB_PORT=5432
 DB_NAME=$DB_NAME
 DB_USER=$DB_USER
@@ -165,7 +163,7 @@ echo "📊 Database Information:"
 echo "======================="
 echo "PostgreSQL Instance: $DB_INSTANCE_NAME"
 echo "PostgreSQL Database: $DB_NAME"
-echo "PostgreSQL Private IP: $DB_PRIVATE_IP"
+echo "PostgreSQL IP: $DB_IP"
 echo ""
 echo "Redis Instance: $REDIS_INSTANCE_NAME"
 echo "Redis Host: $REDIS_HOST"

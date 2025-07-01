@@ -83,8 +83,8 @@ gcloud container clusters create $CLUSTER_NAME \
     --enable-ip-alias \
     --network=default \
     --subnetwork=default \
-    --enable-cloud-logging \
-    --enable-cloud-monitoring \
+    --logging=SYSTEM,WORKLOAD \
+    --monitoring=SYSTEM,WORKLOAD \
     --release-channel=stable \
     --workload-pool=$PROJECT_ID.svc.id.goog \
     --enable-shielded-nodes
