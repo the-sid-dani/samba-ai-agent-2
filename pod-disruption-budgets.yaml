@@ -1,0 +1,32 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: sambaai-api-pdb
+  namespace: sambaai
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: sambaai-api
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: sambaai-web-pdb
+  namespace: sambaai
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: sambaai-web
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: sambaai-vespa-pdb
+  namespace: sambaai
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: sambaai-vespa 
