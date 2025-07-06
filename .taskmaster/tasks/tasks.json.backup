@@ -1,0 +1,2023 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Fork Onyx Repository and Initial Setup",
+        "description": "Fork Onyx v0.29.1 repository and set up basic project structure with minimal rebranding",
+        "details": "Fork the Onyx v0.29.1 repository to create sambaai repository. Keep all internal structure intact including package names (onyx.*), Docker service names, database schemas, and API routes. Only change user-visible elements. Use git to fork: `git clone https://github.com/danswer-ai/danswer.git sambaai && cd sambaai && git remote rename origin upstream && git remote add origin <new-repo-url>`",
+        "testStrategy": "Verify repository structure matches Onyx, all internal references preserved, and basic Docker compose can start without errors",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Fork the Repository",
+            "description": "Create a fork of the original repository under your own account to establish an independent copy for customization.",
+            "dependencies": [],
+            "details": "Navigate to the repository page and use the 'Fork' button to create your own copy. Then, clone your fork locally using git.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Rename Remotes",
+            "description": "Update the remote names in your local git repository to distinguish between your fork and the original upstream repository.",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "After cloning, rename the default 'origin' remote to your fork and add the original repository as 'upstream' for future updates.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Verify Internal Structure",
+            "description": "Check the internal structure of the forked repository to ensure all necessary files and directories are present and correctly organized.",
+            "dependencies": [
+              "1.2"
+            ],
+            "details": "Review the repository for essential files such as Dockerfile, docker-compose.yml, and application source code. Confirm that the structure matches the original and supports Docker-based workflows.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Test Docker Compose Startup",
+            "description": "Run Docker Compose to verify that the application starts up correctly using the forked repository.",
+            "dependencies": [
+              "1.3"
+            ],
+            "details": "Use 'docker-compose up' to start the application and check for successful service initialization and absence of errors.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Update Web UI Branding",
+        "description": "Replace all user-visible 'Onyx' references with 'SambaAI' in the web interface. This is a final polish step to be completed after core functionality is working.",
+        "details": "Update text in web/src/app/**/*.tsx files, replacing 'Onyx' with 'SambaAI'. Use find and replace: `find web/src -name '*.tsx' -exec sed -i 's/Onyx/SambaAI/g' {} +`. Focus on user-facing strings only, preserve component names and internal references. Update page titles, headers, and UI labels. This cosmetic change should be performed after the core Slack bot functionality has been tested and verified.",
+        "testStrategy": "Manual UI testing to ensure all visible text shows 'SambaAI', no 'Onyx' visible to end users, internal functionality unchanged",
+        "priority": "low",
+        "dependencies": [
+          15
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Identify User-Visible Strings in the UI",
+            "description": "Locate and catalog all user-facing text elements in the application's user interface, ensuring only human-readable and localizable strings are included.",
+            "dependencies": [],
+            "details": "Review UI components, screens, and dialogs to extract all strings visible to users. Exclude internal or non-user-facing strings. Document each string with its location and context.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Perform String Replacements",
+            "description": "Replace identified user-visible strings with updated text or placeholders, ensuring correct mapping and preservation of string identifiers where applicable.",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Use a systematic approach (such as string keys or IDs) to perform replacements. Ensure that only the intended user-facing strings are modified, and maintain consistency across the UI.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Manual UI Verification",
+            "description": "Manually review the updated UI to verify that all intended string replacements are correct and that no unintended changes have occurred.",
+            "dependencies": [
+              "2.2"
+            ],
+            "details": "Test the application in various scenarios to confirm that all user-visible strings display as expected. Check for missed replacements, formatting issues, or context errors.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Replace Logo and Favicon Assets",
+        "description": "Update logo files and favicon with SambaAI branding. This is a final polish step to be completed after core functionality is working.",
+        "details": "Replace web/public/logo.png with sambaai-logo.png, update web/public/favicon.ico with new favicon. Update logo components in web/src/components/logo/ directory. Ensure consistent branding across all visual assets. Use standard web formats: PNG for logos (multiple sizes: 32x32, 64x64, 128x128), ICO for favicon.",
+        "testStrategy": "Visual verification that new logos appear correctly in browser tab, header, and all UI locations where logos are displayed",
+        "priority": "low",
+        "dependencies": [
+          15
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Prepare and Organize Logo Assets",
+            "description": "Gather all required logo files in appropriate formats (e.g., SVG, PNG, JPEG, AI, PDF, EPS) and organize them for easy access and use in the codebase.",
+            "dependencies": [],
+            "details": "Ensure that both vector and raster formats are included, with transparent backgrounds where needed. Organize files in clearly labeled folders to separate vector and image formats for simplicity and future reference.[3]",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Replace Logo Files in Codebase",
+            "description": "Update the codebase by replacing old logo files with the new assets, ensuring all references and imports are updated accordingly.",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Locate all instances of the logo in the codebase, including different UI components and documentation. Replace the files and update any file paths or references to ensure the new logos are used throughout the application.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Verify Visual Appearance Across the UI",
+            "description": "Review the application UI to confirm that the new logo assets display correctly and consistently in all locations.",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Test the UI on various devices and screen resolutions to ensure the logo appears sharp, is properly scaled, and maintains visual consistency. Address any issues with sizing, alignment, or display as needed.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Create Base Environment Configuration",
+        "description": "Set up initial .env configuration file with default Onyx settings and SambaAI customizations",
+        "details": "Create deployment/docker_compose/.env file with AUTH_TYPE=disabled, LOG_LEVEL=info, POSTGRES_PASSWORD=sambaai123, SECRET_KEY=sambaai-secret-key-change-in-prod. Configure LLM settings: GEN_AI_MODEL_PROVIDER=litellm, GEN_AI_MODEL_VERSION=claude-3-sonnet-20240229, FAST_GEN_AI_MODEL_VERSION=claude-3-haiku-20240307. Add placeholder Slack tokens for later configuration.",
+        "testStrategy": "Docker compose starts successfully, all services show healthy status, can access http://localhost:3000, database migrations complete without errors",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create the .env File",
+            "description": "Generate a .env file at the project root to store environment variables required for Docker and application configuration.",
+            "dependencies": [],
+            "details": "Ensure the .env file is created following Docker best practices, such as not including sensitive information directly and using clear variable names. Reference Docker documentation for environment variable management.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set Default Values for Environment Variables",
+            "description": "Populate the .env file with default values for all required environment variables, ensuring interoperability and security.",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Define sensible defaults for each variable (e.g., APP_ENV=production, PORT=8000) and comment each entry for clarity. Avoid hardcoding secrets; use placeholders where necessary.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure LLM (Large Language Model) Settings",
+            "description": "Add and document environment variables specific to LLM configuration, such as model type, API keys, and resource limits.",
+            "dependencies": [
+              "4.2"
+            ],
+            "details": "Include variables like LLM_MODEL, LLM_API_KEY, and LLM_MAX_TOKENS in the .env file. Ensure these are clearly separated and documented for maintainability.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Validate Docker Startup with Environment Configuration",
+            "description": "Test Docker Compose startup to ensure all environment variables are correctly loaded and the application starts without errors.",
+            "dependencies": [
+              "4.3"
+            ],
+            "details": "Run 'docker compose up' and verify that all services read the environment variables as expected. Check logs for missing or misconfigured variables and update documentation as needed.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Verify Docker Compose Services",
+        "description": "Ensure all core services (API, background, database, Vespa, Redis) start correctly",
+        "details": "Test docker-compose.dev.yml with services: api_server (port 8080), background worker, relational_db (PostgreSQL 15.2), index (Vespa 8.277.17), cache (Redis 7.0.15), model_server (port 9000), nginx (port 3000). Verify health checks pass for all services. Check logs for any startup errors.",
+        "testStrategy": "Run `docker-compose ps` to verify all services running, `docker-compose logs` shows no critical errors, health endpoints return 200 status",
+        "priority": "high",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Start All Required Services",
+            "description": "Initiate all necessary services as part of the orchestration workflow, ensuring each service is started in the correct order and dependencies are respected.",
+            "dependencies": [],
+            "details": "Use orchestration tools or scripts to start services. Monitor startup logs for immediate errors and confirm that each service reports a healthy initial state.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Perform Health Checks on Services",
+            "description": "Check the health status of each running service to ensure they are operational and ready for further integration.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Utilize automated health check endpoints or monitoring tools to verify that each service is functioning as expected. Address any failed health checks before proceeding.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Review Service Logs for Errors or Warnings",
+            "description": "Analyze the logs generated by each service to identify any errors, warnings, or anomalies that could indicate integration or runtime issues.",
+            "dependencies": [
+              "5.2"
+            ],
+            "details": "Aggregate and review logs using centralized logging solutions. Pay special attention to startup errors, failed dependencies, or unexpected behavior.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Verify Service Endpoints and Integration",
+            "description": "Test and validate the exposed endpoints of each service to ensure they are accessible and returning expected results, confirming successful integration.",
+            "dependencies": [
+              "5.3"
+            ],
+            "details": "Use automated or manual API tests to verify endpoint responses. Confirm that services interact correctly and that workflows function as intended.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Database Migration and Schema Verification",
+        "description": "Run database migrations and verify all required tables are created correctly",
+        "details": "Execute Onyx database migrations to create PostgreSQL schema including user accounts, connector configs, document metadata, and channel mappings tables. Verify Vespa schema for document embeddings and full-text indices. Check Redis configuration for caching and session data.",
+        "testStrategy": "Query database to verify all expected tables exist, run sample CRUD operations, check Vespa status endpoint, verify Redis connectivity",
+        "priority": "high",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Run Database Migrations",
+            "description": "Execute all pending migrations to update the PostgreSQL schema and any other relevant data stores to the latest version.",
+            "dependencies": [],
+            "details": "Ensure migration scripts are applied in the correct order and monitor for errors or conflicts during execution.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Verify PostgreSQL Schema",
+            "description": "Check that the PostgreSQL schema matches the expected structure after migrations.",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Review tables, columns, indexes, constraints, and permissions. Confirm schema organization, ownership, and adherence to best practices such as normalization and foreign key relationships[1][4][5].",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Check Vespa Schema",
+            "description": "Validate that the Vespa schema is up-to-date and consistent with application requirements.",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Inspect Vespa document types, fields, and schema definitions. Ensure any changes from migrations are reflected in Vespa's configuration.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Validate Redis Configuration",
+            "description": "Confirm that Redis configuration aligns with application needs and is compatible with recent schema or data changes.",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Check Redis key patterns, data structures, and any relevant configuration parameters. Ensure no breaking changes have been introduced.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Cross-System Consistency Validation",
+            "description": "Perform end-to-end checks to ensure all data stores (PostgreSQL, Vespa, Redis) are consistent and integrated correctly after migrations.",
+            "dependencies": [
+              "6.2",
+              "6.3",
+              "6.4"
+            ],
+            "details": "Run integration tests and data validation scripts to verify that all systems interact as expected and that schema changes are reflected across the stack.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Investigate Slack Bot Name Configuration",
+        "description": "Research how bot name and mention detection works in Onyx codebase",
+        "details": "Examine backend/onyx/onyxbot/slack/listener.py, config.py, and utils.py to understand bot mention detection logic. Look for hardcoded 'onyxbot' strings, display name configuration, and how @mentions are processed. Document current implementation and identify required changes for @sambaai support.",
+        "testStrategy": "Code review and documentation of current bot name handling, test plan for @sambaai mention detection, identify minimal required changes",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Review Relevant Code Files",
+            "description": "Conduct a thorough review of the relevant code files, focusing on functionality, readability, maintainability, and adherence to project requirements. Identify sections related to bot mentions and ensure they meet the intended functionality and coding standards.",
+            "dependencies": [],
+            "details": "Use established code review checklists to verify that the code implements the required features, handles edge cases, and follows best practices for structure and design. Pay special attention to logic handling bot mentions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Document Current Logic",
+            "description": "Create clear documentation outlining the current logic and flow of the reviewed code, especially the parts handling bot mentions. Include explanations of key functions, classes, and interactions.",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Summarize how the code currently works, referencing specific files and functions. Highlight any complex or non-obvious logic, and ensure documentation is accessible for future reference.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Identify and List Required Changes",
+            "description": "Analyze the documented logic to identify gaps, issues, or areas for improvement. List all required changes to align the code with project requirements and best practices.",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Compare the current implementation against requirements and code review checklists. Note missing features, logic errors, or improvements needed for handling bot mentions, and document these as actionable items.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Configure Confluence Connector Authentication",
+        "description": "Set up Confluence connector to access Samba's Atlassian instance",
+        "details": "Configure existing Onyx Confluence connector with CONFLUENCE_BASE_URL=https://samba.atlassian.net/wiki, CONFLUENCE_SPACE_KEYS=['ENG', 'PRODUCT', 'DOCS'], CONFLUENCE_API_TOKEN and CONFLUENCE_USER_EMAIL. Use Atlassian API token authentication. No code changes needed, only configuration.",
+        "testStrategy": "Verify connector authenticates successfully, can list Confluence spaces, test document indexing with sample page, search returns Confluence results",
+        "priority": "high",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Update Configuration Files",
+            "description": "Review and modify the relevant configuration files to ensure they support the new connector and authentication requirements. This includes specifying endpoints, authentication methods, and any required parameters.",
+            "dependencies": [],
+            "details": "Identify all configuration files involved in the connector setup. Update them to include necessary fields for API tokens and authentication. Ensure sensitive data is not hardcoded and use environment variables where appropriate.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set Up and Secure API Tokens",
+            "description": "Generate, store, and configure API tokens required for connector authentication, following security best practices.",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Generate API tokens using the appropriate authorization server or provider. Store tokens securely using environment variables or a secrets manager. Ensure tokens have appropriate scopes, expiration, and are not exposed in code or logs. Document the process for future maintenance.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Test Connector Authentication",
+            "description": "Validate that the connector can authenticate using the configured API tokens and that the authentication flow works as expected.",
+            "dependencies": [
+              "8.2"
+            ],
+            "details": "Perform end-to-end tests to confirm the connector successfully authenticates with the API using the configured tokens. Check for correct handling of token expiration, error responses, and ensure no sensitive data is leaked during the process.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Test Confluence Document Indexing",
+        "description": "Index sample Confluence documents and verify search functionality",
+        "details": "Run Confluence connector to index documents from configured spaces. Monitor indexing process through admin UI or logs. Verify documents appear in Vespa index with proper metadata, embeddings generated correctly, and full-text search works.",
+        "testStrategy": "Index at least 10 test documents, verify they appear in search results, test various query types, confirm metadata and source attribution correct",
+        "priority": "high",
+        "dependencies": [
+          8
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Run the Connector to Initiate Data Flow",
+            "description": "Start the connector responsible for extracting data from Confluence and sending it to the Vespa index. Ensure the connector is configured correctly and running without errors.",
+            "dependencies": [],
+            "details": "This step involves launching the connector process, monitoring its logs for startup errors, and confirming it begins processing Confluence data.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Monitor Indexing Progress",
+            "description": "Track the indexing process to ensure that data from Confluence is being ingested into Vespa. Watch for errors, bottlenecks, or incomplete data transfer.",
+            "dependencies": [
+              "9.1"
+            ],
+            "details": "Use monitoring tools or logs to verify that documents are being indexed as expected. Address any issues that arise during the data ingestion phase.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Verify Vespa Index Integrity",
+            "description": "Check the Vespa index to confirm that the expected data from Confluence is present and correctly structured.",
+            "dependencies": [
+              "9.2"
+            ],
+            "details": "Query the Vespa index directly to validate document counts, field mappings, and data accuracy. Compare with source data in Confluence to ensure completeness.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Test Search Functionality End-to-End",
+            "description": "Perform integration tests to ensure that search queries against Vespa return accurate and relevant results based on the indexed Confluence data.",
+            "dependencies": [
+              "9.3"
+            ],
+            "details": "Run search queries simulating real user scenarios, validate results against expected outcomes, and document any discrepancies for further investigation.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Set Up Google Cloud Project and Service Account",
+        "description": "Create GCP project and service account for Google Drive access",
+        "details": "Create new GCP project (free tier), enable Google Drive API, Google Docs API, and Google Sheets API. Create service account with domain delegation, download credentials JSON. Configure GOOGLE_APPLICATION_CREDENTIALS path, GOOGLE_ADMIN_EMAIL=admin@samba.tv, and target folder configuration.",
+        "testStrategy": "Service account can authenticate, APIs are enabled and accessible, can list Drive files programmatically, permissions properly configured",
+        "priority": "high",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create a New GCP Project",
+            "description": "Set up a new Google Cloud Platform (GCP) project using the Google Cloud Console or gcloud CLI. Specify the project name, project ID, billing account, and organization or folder as required.",
+            "dependencies": [],
+            "details": "Ensure you have the 'Project Creator' role or equivalent permissions. Navigate to IAM & Admin > Create a Project in the Cloud Console, fill in the required details, and click 'Create'.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Enable Required APIs",
+            "description": "Enable the necessary APIs for your project, such as Compute Engine, Cloud Storage, or any other service APIs needed for your use case.",
+            "dependencies": [
+              "10.1"
+            ],
+            "details": "In the Cloud Console, select your project, go to APIs & Services > Library, and enable each required API. Alternatively, use the gcloud CLI to enable APIs.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create a Service Account",
+            "description": "Create a service account within the new GCP project to allow programmatic access to Google Cloud resources.",
+            "dependencies": [
+              "10.2"
+            ],
+            "details": "Go to IAM & Admin > Service Accounts, click 'Create Service Account', provide a name and description, and assign appropriate roles for the required permissions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Configure Service Account Credentials",
+            "description": "Generate and download a key file (JSON) for the service account and securely store it for use in applications or automation scripts.",
+            "dependencies": [
+              "10.3"
+            ],
+            "details": "After creating the service account, select it, go to 'Keys', click 'Add Key', choose 'Create new key', select JSON, and download the credentials file.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Validate Access and Permissions",
+            "description": "Test the service account credentials by authenticating with Google Cloud and verifying access to the enabled APIs and resources.",
+            "dependencies": [
+              "10.4"
+            ],
+            "details": "Use the gcloud CLI or client libraries to authenticate with the service account key and perform a simple API call (e.g., list resources) to confirm proper configuration and permissions.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Configure Google Drive Connector",
+        "description": "Set up Google Drive connector to access specified folders",
+        "details": "Configure Onyx Google Drive connector with service account credentials. Set GOOGLE_DRIVE_FOLDERS=['Engineering', 'Product Specs'] to limit scope. Configure document type filters for Docs, Sheets, and PDFs. Ensure proper permission handling and folder traversal.",
+        "testStrategy": "Connector can list files from target folders, respects permission boundaries, successfully indexes sample documents, metadata extraction works",
+        "priority": "high",
+        "dependencies": [
+          10
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Update Connector Configuration",
+            "description": "Modify the connector's configuration file or settings to ensure correct connection parameters, working directory, and any required global elements are set according to system requirements.",
+            "dependencies": [],
+            "details": "This includes editing XML or UI-based configuration fields such as host, working directory, and connection credentials. Ensure the configuration file follows the required structure and includes all necessary tags and properties as per documentation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set Folder Filters",
+            "description": "Configure the connector to monitor or interact with specific folders by setting path and file mask properties or equivalent folder scoping options.",
+            "dependencies": [
+              "11.1"
+            ],
+            "details": "Specify the directory or directories to be included or excluded, and define file masks or filters to limit the scope to relevant files. This ensures only intended folders and files are processed by the connector.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure Permissions",
+            "description": "Set up and verify the necessary permissions for the connector to access, read, and/or write to the specified folders and files.",
+            "dependencies": [
+              "11.2"
+            ],
+            "details": "Ensure the connector's service account or credentials have the correct permissions on the file system or remote server. Adjust access control lists or user roles as needed to comply with security requirements.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Test File Listing Functionality",
+            "description": "Validate the connector's ability to list files in the configured folders, ensuring that folder filters and permissions are correctly applied.",
+            "dependencies": [
+              "11.3"
+            ],
+            "details": "Perform a test connection and attempt to list files in the target directories. Confirm that only the intended files and folders are visible and accessible, and troubleshoot any errors encountered.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Test Google Drive Document Indexing",
+        "description": "Index sample Google Drive documents and verify search integration",
+        "details": "Run Google Drive connector to index documents from configured folders. Test various document types (Docs, Sheets, PDFs). Verify proper content extraction, metadata preservation, and search functionality. Monitor indexing performance and error handling.",
+        "testStrategy": "Successfully index documents from both target folders, search returns Drive results with proper source attribution, different file types handled correctly",
+        "priority": "high",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Run the Connector",
+            "description": "Deploy and configure the connector to establish integration with the target document source system.",
+            "dependencies": [],
+            "details": "Ensure the connector is properly installed, configured with correct credentials, and able to access the document repository.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Index Sample Documents",
+            "description": "Ingest and index a representative set of sample documents using the connector.",
+            "dependencies": [
+              "12.1"
+            ],
+            "details": "Select a variety of document types and ensure they are processed and indexed according to established rules and best practices.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Verify Search Integration",
+            "description": "Test the search functionality to confirm that indexed documents are discoverable and accurately retrieved.",
+            "dependencies": [
+              "12.2"
+            ],
+            "details": "Perform search queries for different document types and validate that results match expectations for relevance and completeness.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Monitor Performance",
+            "description": "Track and analyze the performance of the connector and search system during indexing and retrieval operations.",
+            "dependencies": [
+              "12.3"
+            ],
+            "details": "Monitor metrics such as indexing speed, search latency, error rates, and resource utilization to ensure system stability and efficiency.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Create Slack App with SambaAI Branding",
+        "description": "Create new Slack app with proper configuration and branding",
+        "details": "Create Slack app using provided manifest with display_information.name='SambaAI', bot_user.display_name='SambaAI'. Configure OAuth scopes: app_mentions:read, channels:history, channels:read, chat:write, groups:history, groups:read, im:history, users:read. Enable Socket Mode and event subscriptions for app_mention and message events.",
+        "testStrategy": "Slack app created successfully, bot appears as 'SambaAI' in workspace, required permissions granted, Socket Mode connection established",
+        "priority": "high",
+        "dependencies": [
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create the Slack App",
+            "description": "Initiate the creation of a new Slack app via the Slack API website or Slack CLI. Choose the workspace, provide the app name, and select the development method (UI or manifest).",
+            "dependencies": [],
+            "details": "Log in to your Slack account, navigate to the Slack API site, and click 'Create an App'. Choose to start from scratch or use a manifest. Assign the app to the desired workspace.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Configure App Branding",
+            "description": "Set up the app's branding elements, including the app name, icon, and description, to ensure it is easily identifiable within Slack.",
+            "dependencies": [
+              "13.1"
+            ],
+            "details": "Access the app's Basic Information page to update the app name, upload an icon, and provide a short description. These settings define how the app appears to users in the workspace.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Set OAuth Scopes",
+            "description": "Configure the necessary OAuth scopes to define the permissions the app will request when installed in a workspace.",
+            "dependencies": [
+              "13.1"
+            ],
+            "details": "Navigate to the OAuth & Permissions section of the app configuration. Add required scopes such as 'chat:write', 'chat:write.public', and any others needed for the app's functionality.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Enable Event Subscriptions",
+            "description": "Activate and configure event subscriptions to allow the app to receive and respond to specific Slack events.",
+            "dependencies": [
+              "13.1",
+              "13.3"
+            ],
+            "details": "Go to the Event Subscriptions section, enable events, and specify the request URL. Select the events your app should listen to, such as message events or user actions.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Update Slack Bot Configuration",
+        "description": "Configure Slack bot tokens and update mention detection for @sambaai",
+        "details": "Add DANSWER_BOT_SLACK_APP_TOKEN and DANSWER_BOT_SLACK_BOT_TOKEN to environment. Update bot mention detection logic if needed based on investigation findings. Ensure BOT_NAME configuration supports 'sambaai' or use environment variable CUSTOM_BOT_NAME=sambaai.",
+        "testStrategy": "Bot connects to Slack successfully, responds to @sambaai mentions, works in channels and DMs, no 'onyxbot' references visible to users",
+        "priority": "high",
+        "dependencies": [
+          13,
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Update Environment Variables",
+            "description": "Review and update the environment variables to ensure all necessary configuration values (such as API domains, skill IDs, and contact information) are externalized and securely managed according to best practices.",
+            "dependencies": [],
+            "details": "Ensure sensitive data is not stored in environment variables. Use .env files or platform-specific environment management. Avoid storing API credentials directly in environment variables; use secret storage where appropriate.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Modify Mention Detection Logic",
+            "description": "Update the bot's code to improve or change how it detects and responds to mentions, ensuring it aligns with the new configuration and environment variables.",
+            "dependencies": [
+              "14.1"
+            ],
+            "details": "Refactor the mention detection logic to reference updated environment variables where needed. Ensure the logic is robust and handles edge cases.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Test Bot Connection",
+            "description": "Verify that the bot can connect to its platform(s) using the updated environment variables and mention detection logic.",
+            "dependencies": [
+              "14.2"
+            ],
+            "details": "Run the bot in a controlled environment (e.g., staging) and confirm successful authentication and connection. Check for errors related to environment variable access or mention detection.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Verify User-Visible References",
+            "description": "Check all user-facing references (such as bot name, contact info, and URLs) to ensure they reflect the updated environment variable values.",
+            "dependencies": [
+              "14.3"
+            ],
+            "details": "Interact with the bot as a user and confirm that all displayed information is correct and up-to-date. Update any hardcoded references if found.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Comprehensive Testing and Validation",
+            "description": "Conduct end-to-end testing to ensure all changes work as expected and the bot behaves correctly in all scenarios.",
+            "dependencies": [
+              "14.4"
+            ],
+            "details": "Test in both development and production-like environments. Validate that environment variables are loaded, mention detection works, and user-visible references are accurate. Document any issues and resolve them before deployment.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Test Basic Slack Bot Functionality",
+        "description": "Verify Slack bot responds correctly to mentions and basic queries",
+        "details": "Test bot response to @sambaai mentions in various contexts: channels, DMs, threads. Verify bot can query both Confluence and Google Drive documents. Test basic query patterns and response formatting. Ensure thread replies work correctly.",
+        "testStrategy": "Bot responds to @sambaai hello, can answer questions from both Confluence and Drive docs, thread replies work, response includes proper citations",
+        "priority": "high",
+        "dependencies": [
+          14,
+          9,
+          12
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Test Bot Mentions in Channels",
+            "description": "Verify that the bot correctly detects and responds to direct mentions in public and private Slack channels.",
+            "dependencies": [],
+            "details": "Send messages mentioning the bot in various channels and confirm appropriate responses are triggered.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Test Bot Mentions in Direct Messages (DMs)",
+            "description": "Ensure the bot responds correctly to direct messages and group DMs where it is mentioned.",
+            "dependencies": [
+              "15.1"
+            ],
+            "details": "Initiate DMs and group DMs with the bot, mention it, and verify the bot's reply behavior.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Test Bot Mentions in Threads",
+            "description": "Check that the bot can detect and respond to mentions within message threads in channels and DMs.",
+            "dependencies": [
+              "15.2"
+            ],
+            "details": "Mention the bot in threaded replies and confirm it processes and responds to these mentions appropriately.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Verify Document Query Responses",
+            "description": "Test the bot's ability to process and return accurate responses to document-based queries across all Slack contexts.",
+            "dependencies": [
+              "15.3"
+            ],
+            "details": "Submit document-related queries via channels, DMs, and threads, and evaluate the relevance and accuracy of the bot's answers.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Check Citation Formatting in Responses",
+            "description": "Ensure that the bot's responses include citations formatted according to the required standards.",
+            "dependencies": [
+              "15.4"
+            ],
+            "details": "Review bot responses to document queries and verify that citations are present, correctly formatted, and reference the appropriate sources.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Configure Default LLM and Embedding Settings",
+        "description": "Set up LLM configuration using Onyx defaults with Claude models",
+        "details": "Configure Claude-3-Sonnet for main responses, Claude-3-Haiku for fast queries. Keep Onyx defaults: HYBRID_SEARCH_WEIGHT_MODIFIER=0.7, CHUNK_SIZE=512, TOP_K_CHUNKS=10. Use default embedding model 'all-MiniLM-L6-v2'. Add GEN_AI_API_KEY for Anthropic API access.",
+        "testStrategy": "LLM responses generated successfully, embedding model works for document indexing, query latency under 3 seconds, responses include proper citations",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Update LLM Configuration",
+            "description": "Modify the configuration settings of the Large Language Model (LLM) to ensure compatibility with the latest requirements and best practices. This includes updating parameters, ensuring security, and aligning with deployment needs.",
+            "dependencies": [],
+            "details": "Review current LLM configuration files and documentation. Apply necessary updates to parameters such as model version, temperature, max tokens, and security settings. Ensure changes are tracked and reversible.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set and Integrate Embedding Model",
+            "description": "Select and configure the appropriate embedding model to work seamlessly with the updated LLM. Ensure compatibility and optimal performance for downstream tasks.",
+            "dependencies": [
+              "16.1"
+            ],
+            "details": "Evaluate available embedding models for compatibility with the updated LLM. Update configuration files or code to reference the chosen embedding model. Test integration to confirm embeddings are generated as expected.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Validate Response Quality and Performance",
+            "description": "Test and validate the quality of LLM responses and embedding outputs to ensure they meet performance and accuracy standards. Address any issues related to model drift or degraded output.",
+            "dependencies": [
+              "16.2"
+            ],
+            "details": "Develop and execute a validation suite that checks response accuracy, structure, and relevance. Compare outputs against benchmarks or previous versions. Document findings and iterate on configuration if necessary.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Create Model Flexibility Abstraction Layer",
+        "description": "Implement abstraction layer for future model customization",
+        "details": "Create backend/onyx/utils/model_flexibility.py with EmbeddingProvider abstract base class. Implement OnyxDefaultEmbedding class wrapping current functionality. Add FutureCustomEmbedding placeholder. Create factory pattern with get_embedding_provider() function using USE_CUSTOM_EMBEDDINGS environment variable.",
+        "testStrategy": "Abstraction layer works with current default models, factory pattern switches correctly based on environment variable, placeholder for future models ready",
+        "priority": "low",
+        "dependencies": [
+          16
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Abstraction Layer",
+            "description": "Define the core abstraction for the system, ensuring separation of interface and implementation. Establish clear contracts using interfaces or abstract base classes to support extensibility for future models.",
+            "dependencies": [],
+            "details": "Apply best practices such as consistent abstraction levels, modularity, and clear naming conventions. Document the abstraction's purpose and usage.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Base and Default Classes",
+            "description": "Develop the base class(es) and at least one default implementation that adhere to the designed abstraction. Ensure these classes encapsulate shared logic and provide extensibility points.",
+            "dependencies": [
+              "17.1"
+            ],
+            "details": "Follow SOLID principles and favor composition over inheritance where appropriate. Include documentation for each class.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Add Factory Logic",
+            "description": "Implement a factory mechanism to instantiate the appropriate class based on configuration or runtime parameters. Ensure the factory supports easy integration of future models.",
+            "dependencies": [
+              "17.2"
+            ],
+            "details": "Use design patterns such as Factory Method or Abstract Factory. Ensure the factory logic is modular and well-documented.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Integrate Environment Variable Configuration",
+            "description": "Enable the system to select and configure models using environment variables. Ensure the factory logic reads and applies these variables correctly.",
+            "dependencies": [
+              "17.3"
+            ],
+            "details": "Document the expected environment variables and their effects. Validate and handle missing or invalid configurations gracefully.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Develop and Execute Tests",
+            "description": "Create comprehensive tests to verify the abstraction, base/default classes, factory logic, and environment variable integration. Ensure tests cover extensibility and edge cases.",
+            "dependencies": [
+              "17.4"
+            ],
+            "details": "Include unit and integration tests. Use mocks or stubs as needed to isolate components. Document test cases and expected outcomes.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Set Up Document Sets via Admin UI",
+        "description": "Research and configure document sets for different content types using Onyx admin interface",
+        "details": "First investigate if Onyx has built-in document set functionality as mentioned in the PRD. If available, access admin UI at http://localhost:3000/admin to create document sets: 'Engineering Docs' (Confluence ENG space + Drive Engineering folder), 'Product Docs' (Confluence PRODUCT space + Drive Product folder), 'General Docs' (all document sources). Use existing Onyx document set functionality.",
+        "testStrategy": "Verify Onyx has document set capabilities, document sets created successfully via admin UI, proper document filtering works, can assign different sets to different use cases",
+        "priority": "medium",
+        "dependencies": [
+          9,
+          12
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 0,
+            "title": "Research Onyx Document Set Functionality",
+            "description": "Investigate whether Onyx has built-in document set functionality as mentioned in the PRD before attempting to create custom sets.",
+            "dependencies": [],
+            "details": "Review Onyx documentation, explore the admin UI, and check for existing document set features. Look for capabilities to group documents from different sources (Confluence spaces, Google Drive folders) into logical sets. Document findings on what's available out of the box.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 1,
+            "title": "Access the Admin UI",
+            "description": "Log in to the system and navigate to the Admin UI using the appropriate credentials and navigation menu.",
+            "dependencies": [
+              "18.0"
+            ],
+            "details": "Ensure you have the necessary permissions to access the Admin UI. Use the navigation menu or toolbar to reach the Admin Home or relevant admin section as described in the documentation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Create Document Sets",
+            "description": "Within the Admin UI, create new document sets or types as required for your use case.",
+            "dependencies": [
+              "18.1"
+            ],
+            "details": "Follow the documented process to create document types or sets, specifying names, classes, and storage locations as needed. Configure any required fields or properties for the document sets.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Verify Filtering Functionality",
+            "description": "Test and validate that filtering functionality works correctly for the created document sets.",
+            "dependencies": [
+              "18.2"
+            ],
+            "details": "Apply filters to the document sets and confirm that the results match the expected criteria. Check that filtering by different fields or properties returns accurate and relevant documents.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Configure Slack Channel Mappings",
+        "description": "Map Slack channels to appropriate document sets using Onyx admin UI",
+        "details": "Use Onyx admin UI at /admin/bots to configure channel mappings: #engineering \u2192 'Engineering Docs', #product \u2192 'Product Docs', #general \u2192 'General Docs'. Configure default behavior for unmapped channels to access all document sets. Leverage existing slack_channel_config table and admin interface.",
+        "testStrategy": "Channel mappings work correctly, #engineering queries only return engineering docs, #product queries only return product docs, unmapped channels access all docs",
+        "priority": "medium",
+        "dependencies": [
+          18,
+          15
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Map Channels to Data Sources",
+            "description": "Identify all relevant channels and map them to their corresponding data sources, ensuring each channel's data is clearly defined and relationships are established for accurate filtering.",
+            "dependencies": [],
+            "details": "Review all available channels, document their data structures, and define how each channel's data will be represented in the system. Establish mapping logic to ensure correct association between channels and their data.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Configure Channel-Specific Defaults",
+            "description": "Set up default configurations for each channel, including default filters, naming conventions, and any required transformation rules for consistent data handling.",
+            "dependencies": [
+              "19.1"
+            ],
+            "details": "Based on the channel mapping, define and implement default settings for each channel to standardize data processing and ensure accurate document filtering.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Update Admin UI for Channel Management",
+            "description": "Modify the admin user interface to support channel mapping and configuration, allowing administrators to view, edit, and validate channel-specific settings.",
+            "dependencies": [
+              "19.2"
+            ],
+            "details": "Enhance the admin UI to display channel mappings, allow configuration of defaults, and provide validation feedback to ensure correct setup.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Test Channel-Specific Query Filtering",
+            "description": "Develop and execute tests to validate that document filtering and queries work correctly for each channel, ensuring that only relevant documents are returned per channel configuration.",
+            "dependencies": [
+              "19.3"
+            ],
+            "details": "Create test cases for each channel, simulate queries, and verify that the filtering logic correctly restricts results to the intended channel-specific documents.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Test Channel-Specific Document Filtering",
+        "description": "Verify that channel mappings correctly filter search results",
+        "details": "Test queries in different Slack channels to ensure proper document filtering. Verify #engineering channel only searches engineering documents, #product channel only searches product documents. Test edge cases like unmapped channels and direct messages.",
+        "testStrategy": "Channel-specific filtering works correctly, no cross-contamination between channels, unmapped channels have appropriate default behavior, DM behavior matches expectations",
+        "priority": "medium",
+        "dependencies": [
+          19
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Test Queries in Mapped Channels",
+            "description": "Design and execute tests to verify that queries function correctly in channels that are mapped for query handling.",
+            "dependencies": [],
+            "details": "Include both typical and edge-case queries. Ensure mapped channels are correctly identified and responses are as expected.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Test Queries in Unmapped Channels",
+            "description": "Validate that queries in unmapped channels are handled appropriately, ensuring no unintended processing or leakage.",
+            "dependencies": [
+              "20.1"
+            ],
+            "details": "Attempt queries in channels not mapped for query handling. Confirm that queries are ignored or handled per requirements.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Test Queries in Direct Messages (DMs)",
+            "description": "Assess query handling in direct messages to ensure correct processing and privacy.",
+            "dependencies": [
+              "20.2"
+            ],
+            "details": "Send queries via DMs and verify that responses are accurate and isolated from channel-based logic.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Verify Filtering and Cross-Contamination Prevention",
+            "description": "Test filtering mechanisms to ensure queries and responses do not cross between mapped, unmapped, and DM contexts.",
+            "dependencies": [
+              "20.3"
+            ],
+            "details": "Intentionally attempt edge cases where queries could leak or be misrouted. Confirm that filtering rules prevent cross-contamination.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "title": "Implement Health Check Endpoints",
+        "description": "Add comprehensive health checks for all services",
+        "details": "Implement health check endpoints for API server (/health), verify database connectivity, Vespa index status, Redis cache availability, and Slack bot connection status. Add Docker health check configurations with appropriate intervals and timeouts.",
+        "testStrategy": "All health endpoints return 200 status when services healthy, proper error responses when services down, Docker health checks work correctly",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Health Endpoints for Each Service",
+            "description": "Define the health check criteria and endpoint structure for each microservice, ensuring coverage of core dependencies (e.g., database, external APIs, service uptime).",
+            "dependencies": [],
+            "details": "Review each service's architecture to determine what constitutes 'healthy' status. Document the expected response format and HTTP status codes for the /health endpoint.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Health Endpoints in Codebase",
+            "description": "Add or update the /health HTTP endpoint in each service to perform the defined health checks and return appropriate status and details.",
+            "dependencies": [
+              "21.1"
+            ],
+            "details": "Use frameworks or libraries (e.g., Spring Boot Actuator, MicroProfile Health) where possible. Ensure endpoints check all critical dependencies and return standardized responses.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate Docker Health Checks",
+            "description": "Update Dockerfiles or Docker Compose configurations to use the new health endpoints for container health checks.",
+            "dependencies": [
+              "21.2"
+            ],
+            "details": "Configure Docker's HEALTHCHECK instruction to periodically call the /health endpoint and interpret the results to mark containers as healthy or unhealthy.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Test Health Endpoints and Docker Integration",
+            "description": "Verify that health endpoints respond correctly under normal and failure scenarios, and that Docker health checks reflect service status accurately.",
+            "dependencies": [
+              "21.3"
+            ],
+            "details": "Simulate dependency failures (e.g., database down) and confirm that both the endpoint and Docker health status change as expected. Automate tests where possible.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Test and Validate Error Responses",
+            "description": "Ensure that health endpoints and services return appropriate error responses and status codes for various unhealthy states.",
+            "dependencies": [
+              "21.4"
+            ],
+            "details": "Check that error payloads are informative and conform to the documented format. Validate that monitoring tools and orchestrators can interpret these responses.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Configure Production Docker Compose",
+        "description": "Create production-ready Docker Compose configuration",
+        "details": "Create docker-compose.prod.yml with resource limits (API: 4G memory, 2 CPUs; Vespa: 8G memory, 4 CPUs), restart policies, health checks, and proper logging configuration. Add volume mounts for data persistence and log collection.",
+        "testStrategy": "Production compose starts successfully, resource limits enforced, services restart automatically on failure, logs properly collected",
+        "priority": "medium",
+        "dependencies": [
+          21
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Production Docker Compose File",
+            "description": "Draft a production-ready docker-compose.yml file, specifying the appropriate version and separating configuration files as needed for modularity and maintainability.",
+            "dependencies": [],
+            "details": "Ensure the file uses a well-supported Compose version (e.g., '3.8') and consider splitting configurations (e.g., base and prod overrides) for clarity and environment-specific settings.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set Resource Limits for Services",
+            "description": "Define CPU and memory limits for each service in the Compose file to prevent resource contention and ensure stable performance.",
+            "dependencies": [
+              "22.1"
+            ],
+            "details": "Use the 'deploy.resources.limits' section to specify appropriate values for 'cpus' and 'memory' for each service based on application requirements.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure Restart Policies",
+            "description": "Add restart policies to each service to enhance reliability and ensure automatic recovery from failures.",
+            "dependencies": [
+              "22.1"
+            ],
+            "details": "Use the 'restart' key (e.g., 'always', 'on-failure') for each service to define how containers should behave on exit or failure.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Add Health Checks to Services",
+            "description": "Implement health check configurations for critical services to monitor their status and enable Compose to manage unhealthy containers.",
+            "dependencies": [
+              "22.1"
+            ],
+            "details": "Use the 'healthcheck' section to define test commands, intervals, timeouts, and retries for each service that requires monitoring.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Set Up Logging Configuration",
+            "description": "Configure logging drivers and options for each service to ensure logs are captured, stored, and managed according to production standards.",
+            "dependencies": [
+              "22.1"
+            ],
+            "details": "Specify the 'logging' section for each service, selecting appropriate drivers (e.g., 'json-file', 'syslog') and options for log rotation and retention.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "Set Up Basic Logging and Monitoring",
+        "description": "Configure structured logging and basic monitoring for all services",
+        "details": "Configure structured JSON logging for all services with appropriate log levels. Set up log rotation and retention policies. Add basic metrics collection for query latency, error rates, and service health. Use Docker logging drivers for centralized log collection.",
+        "testStrategy": "Logs are properly structured and collected, log rotation works, basic metrics available, can troubleshoot issues using logs",
+        "priority": "medium",
+        "dependencies": [
+          22
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Configure Structured Logging Across Services",
+            "description": "Implement structured logging in all services using a consistent format (e.g., JSON), ensuring inclusion of relevant metadata such as timestamps, log levels, and context-specific fields.",
+            "dependencies": [],
+            "details": "Follow best practices for structured logging, including using standard log levels, unique keys, and consistent field names. Test and validate logs before production deployment.[1][2][5]",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set Up Log Rotation Policies",
+            "description": "Establish log rotation mechanisms to manage log file sizes and retention, preventing disk space issues and ensuring compliance with data retention policies.",
+            "dependencies": [
+              "23.1"
+            ],
+            "details": "Configure log rotation tools (e.g., logrotate or built-in logging library features) to archive, compress, and delete old logs as needed. Ensure rotation settings are consistent across all services.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate Metrics Collection",
+            "description": "Add metrics collection to monitor logging performance, error rates, and system health, enabling proactive alerting and observability.",
+            "dependencies": [
+              "23.1"
+            ],
+            "details": "Instrument services to expose metrics (e.g., via Prometheus exporters) for log volume, error counts, and critical events. Set up dashboards and alerts for key metrics.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Integrate Docker Logging Drivers",
+            "description": "Configure Docker containers to use appropriate logging drivers that support structured logging and centralized log aggregation.",
+            "dependencies": [
+              "23.1",
+              "23.2"
+            ],
+            "details": "Select and configure Docker logging drivers (e.g., json-file, fluentd, or syslog) to ensure logs are captured in structured format and forwarded to log management systems.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Validate and Test End-to-End Logging and Monitoring",
+            "description": "Perform comprehensive testing to ensure structured logs, log rotation, metrics, and Docker logging integration work seamlessly across all services.",
+            "dependencies": [
+              "23.2",
+              "23.3",
+              "23.4"
+            ],
+            "details": "Simulate log generation, rotation, and metric collection. Verify logs are correctly formatted, rotated, and aggregated. Confirm metrics and alerts function as expected.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Create Deployment Scripts",
+        "description": "Develop scripts for easy deployment and service management",
+        "details": "Create scripts/deploy.sh for production deployment, scripts/backup.sh for data backup, scripts/restore.sh for data restoration. Include environment validation, service health checks, and rollback procedures. Make scripts idempotent and error-resistant.",
+        "testStrategy": "Deployment script successfully deploys to clean environment, backup/restore scripts work correctly, rollback procedure tested",
+        "priority": "medium",
+        "dependencies": [
+          22
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Develop Deployment, Backup, and Restore Scripts",
+            "description": "Create scripts to automate deployment, backup, and restore processes, ensuring proper error handling, logging, and idempotency.",
+            "dependencies": [],
+            "details": "Scripts should include steps for installing dependencies, building the application, running migrations, restarting services, creating backups before deployment, and restoring from backups if needed. Follow best practices such as meaningful logging, cleanup procedures, and versioning.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Add Environment Validation to Scripts",
+            "description": "Implement environment validation checks within the scripts to ensure correct environment variables and configurations are present before execution.",
+            "dependencies": [
+              "24.1"
+            ],
+            "details": "Scripts should verify the presence and correctness of required environment variables and configurations, and abort execution with clear error messages if validation fails. This prevents accidental deployments or restores in the wrong environment.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Test Backup and Restore Functionality",
+            "description": "Test the backup and restore scripts in a staging environment to confirm they work as intended and data integrity is maintained.",
+            "dependencies": [
+              "24.2"
+            ],
+            "details": "Perform backup and restore operations, verify that backups are created correctly, and ensure that restoring from backup returns the system to the expected state. Document any issues and refine scripts as needed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Test and Document Rollback Procedures",
+            "description": "Simulate deployment failures and test rollback procedures to ensure the system can recover gracefully using the backup and restore scripts.",
+            "dependencies": [
+              "24.3"
+            ],
+            "details": "Intentionally trigger deployment errors, observe rollback execution, and verify that the application is restored to its previous state. Document the rollback process and update scripts or procedures based on findings.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Implement Integration Tests",
+        "description": "Create comprehensive integration tests for core functionality",
+        "details": "Create tests/integration/test_minimal_functionality.py with tests for: bot responds to @sambaai mentions, Confluence search works, Google Drive search works, channel filtering works, citations included in responses. Use pytest framework with proper fixtures and mocking.",
+        "testStrategy": "All integration tests pass, tests cover critical user journeys, can run tests in CI/CD pipeline, tests catch regressions",
+        "priority": "medium",
+        "dependencies": [
+          20
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define Test Framework Requirements",
+            "description": "Gather and document the requirements for the test framework, including types of tests, target platforms, reporting needs, and integration points.",
+            "dependencies": [],
+            "details": "Engage stakeholders to clarify testing needs and desired outcomes. Identify functional, regression, and integration tests required for comprehensive coverage.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Select Tools and Technologies",
+            "description": "Evaluate and choose appropriate test automation tools, programming languages, and supporting utilities for reporting and CI/CD integration.",
+            "dependencies": [
+              "25.1"
+            ],
+            "details": "Assess compatibility, ease of use, and community support for tools such as Selenium, Appium, or others. Decide on scripting language and reporting/logging solutions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design and Set Up Test Framework Architecture",
+            "description": "Design the architecture of the test framework, organize test scripts, and set up the initial project structure.",
+            "dependencies": [
+              "25.2"
+            ],
+            "details": "Create a high-level diagram of framework components, define folder structure, and establish guidelines for test data management and script organization.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Configure Test Fixtures and Test Environment",
+            "description": "Set up and configure test fixtures, manage test data, and automate environment creation for consistent and reliable test execution.",
+            "dependencies": [
+              "25.3"
+            ],
+            "details": "Automate environment setup using containers or scripts, manage configurations, and ensure separation of test environments. Implement fixtures for setup/teardown routines.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Write and Organize Tests for Core Features",
+            "description": "Develop automated tests for each core feature, ensuring coverage of integration points and critical workflows.",
+            "dependencies": [
+              "25.4"
+            ],
+            "details": "Write test cases for all major features and services, focusing on integration and end-to-end scenarios. Organize tests according to the framework structure.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Integrate Test Framework with CI/CD Pipeline",
+            "description": "Integrate the test framework into the CI/CD pipeline to enable automated test execution on code changes and deployments.",
+            "dependencies": [
+              "25.5"
+            ],
+            "details": "Configure CI/CD tools to trigger tests, collect results, and generate reports. Ensure test environments are provisioned and cleaned up automatically.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Performance Testing and Optimization",
+        "description": "Test system performance and optimize for target metrics",
+        "details": "Load test with target metrics: query latency < 3 seconds, support 50 concurrent users, handle 100K documents. Use tools like Apache Bench or Locust for load testing. Profile slow queries and optimize Vespa configuration, database queries, and caching strategies.",
+        "testStrategy": "System meets performance targets under load, no memory leaks or resource exhaustion, query latency consistently under 3 seconds",
+        "priority": "medium",
+        "dependencies": [
+          25
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define Performance Goals and Metrics",
+            "description": "Identify key performance targets, such as response time, throughput, and resource utilization. Establish acceptance criteria and determine which scenarios (e.g., peak load, stress) to test.",
+            "dependencies": [],
+            "details": "Consult stakeholders to clarify business requirements and translate them into measurable performance objectives.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Design Load Test Scenarios and Scripts",
+            "description": "Develop test cases and scripts that simulate real-world user interactions and workloads, covering normal, peak, and stress conditions.",
+            "dependencies": [
+              "26.1"
+            ],
+            "details": "Use specialized load testing tools to create scripts that accurately reflect expected usage patterns.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Set Up Benchmarking and Test Environment",
+            "description": "Prepare a test environment that mirrors production, including hardware, software, and network configurations. Ensure all benchmarking tools are configured.",
+            "dependencies": [
+              "26.2"
+            ],
+            "details": "Validate that the environment is isolated and consistent to ensure reliable benchmarking results.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Execute Load Tests and Collect Benchmark Data",
+            "description": "Run the designed load tests, monitor system performance, and collect detailed benchmark data across all relevant metrics.",
+            "dependencies": [
+              "26.3"
+            ],
+            "details": "Capture logs, resource usage, and response times for later analysis.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Profile and Analyze Performance Bottlenecks",
+            "description": "Analyze collected data to identify system bottlenecks, using profiling tools to pinpoint issues across services and components.",
+            "dependencies": [
+              "26.4"
+            ],
+            "details": "Prioritize bottlenecks based on impact and feasibility of optimization.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Optimize Configurations and Retest",
+            "description": "Apply targeted optimizations to system configurations, code, or infrastructure. Rerun load tests to validate improvements and ensure performance targets are met.",
+            "dependencies": [
+              "26.5"
+            ],
+            "details": "Iterate as needed, comparing results to initial benchmarks and acceptance criteria.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "title": "Create Setup Documentation",
+        "description": "Write comprehensive setup and configuration documentation",
+        "details": "Create README.md with quick start guide, docs/setup.md with detailed installation instructions, docs/configuration.md with all configuration options, docs/troubleshooting.md with common issues and solutions. Include screenshots and example configurations.",
+        "testStrategy": "Documentation allows new user to set up system from scratch, all configuration options documented, troubleshooting guide helps resolve common issues",
+        "priority": "medium",
+        "dependencies": [
+          24
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Draft Quick Start Guide",
+            "description": "Create a concise quick start guide that provides users with the essential steps to get up and running with the product.",
+            "dependencies": [],
+            "details": "Outline the minimum steps required for initial use, including installation, basic configuration, and first run. Use clear, simple language and include screenshots or diagrams if helpful.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Write Detailed Setup Instructions",
+            "description": "Develop comprehensive setup instructions covering all installation methods, prerequisites, and environment-specific considerations.",
+            "dependencies": [
+              "27.1"
+            ],
+            "details": "Expand on the quick start by detailing each installation step, supported platforms, dependencies, and any advanced setup options. Ensure instructions are logically ordered and easy to follow.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Document Configuration Options",
+            "description": "Create thorough documentation for all configuration settings, including descriptions, default values, and usage examples.",
+            "dependencies": [
+              "27.2"
+            ],
+            "details": "List all configurable parameters, explain their purpose, acceptable values, and provide sample configuration files or code snippets. Highlight recommended settings for common use cases.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop Troubleshooting Guide",
+            "description": "Assemble a troubleshooting guide addressing common issues, error messages, and their solutions.",
+            "dependencies": [
+              "27.3"
+            ],
+            "details": "Identify frequent problems users may encounter, provide step-by-step solutions, and include links to relevant sections of the documentation. Add tips for debugging and contact information for support if needed.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "title": "Security Configuration and Hardening",
+        "description": "Implement security best practices and hardening measures",
+        "details": "Configure HTTPS/TLS for all external connections, implement proper secret management (avoid hardcoded secrets), set up network security (firewall rules, VPC if using cloud), configure authentication and authorization properly, implement rate limiting for API endpoints.",
+        "testStrategy": "Security scan shows no critical vulnerabilities, secrets properly managed, network access properly restricted, rate limiting prevents abuse",
+        "priority": "medium",
+        "dependencies": [
+          22
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Configure HTTPS/TLS",
+            "description": "Set up HTTPS/TLS to secure data in transit between clients and services, including certificate management and enforcing strong encryption protocols.",
+            "dependencies": [],
+            "details": "Obtain and install valid TLS certificates, configure web servers or load balancers to enforce HTTPS, disable insecure protocols and ciphers, and ensure certificate renewal processes are in place.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Secret Management",
+            "description": "Establish a centralized secrets management solution to securely store, access, and rotate sensitive credentials such as API keys, passwords, and certificates.",
+            "dependencies": [
+              "28.1"
+            ],
+            "details": "Inventory all secrets, avoid hardcoding, automate rotation, enforce access controls, and audit secret usage. Use tools like Vault or cloud-native secret managers and maintain metadata for each secret.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Harden Network Security",
+            "description": "Apply network security controls to restrict unauthorized access and protect internal resources.",
+            "dependencies": [
+              "28.1"
+            ],
+            "details": "Implement firewalls, network segmentation, and security groups. Restrict inbound and outbound traffic to only necessary services and monitor for suspicious activity.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Configure Authentication Mechanisms",
+            "description": "Set up robust authentication methods to verify user and service identities.",
+            "dependencies": [
+              "28.1",
+              "28.2"
+            ],
+            "details": "Implement multi-factor authentication, use secure identity providers, and ensure authentication tokens are securely managed and validated.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Define and Enforce Authorization Policies",
+            "description": "Establish and enforce authorization rules to control access to resources based on user roles and permissions.",
+            "dependencies": [
+              "28.4"
+            ],
+            "details": "Implement role-based access control (RBAC) or attribute-based access control (ABAC), regularly review permissions, and audit access logs for compliance.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement Rate Limiting",
+            "description": "Set up rate limiting to prevent abuse and mitigate denial-of-service attacks.",
+            "dependencies": [
+              "28.3",
+              "28.4"
+            ],
+            "details": "Configure rate limiting at the API gateway or application layer, define thresholds per user or IP, and monitor for excessive requests.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "Prepare GCP Deployment Infrastructure",
+        "description": "Set up GCP infrastructure for production deployment",
+        "details": "Create GCP e2-standard-8 VM (8 vCPUs, 32GB RAM, 500GB SSD) with Docker pre-installed. Configure static IP, firewall rules for necessary ports (80, 443, 22), set up automated backups for data volumes. Prepare terraform scripts for future infrastructure as code.",
+        "testStrategy": "VM created successfully, Docker services run properly, static IP accessible, backups configured and tested, infrastructure reproducible",
+        "priority": "low",
+        "dependencies": [
+          28
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Provision Virtual Machine (VM)",
+            "description": "Create a new virtual machine in the target cloud environment, ensuring appropriate sizing, OS selection, and network placement.",
+            "dependencies": [],
+            "details": "Select VM specifications (CPU, RAM, storage), choose the operating system, and assign to the correct virtual network/subnet. Ensure naming conventions and tagging for resource tracking.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Configure Firewall Rules",
+            "description": "Set up firewall rules to control inbound and outbound traffic for the VM, ensuring security and compliance.",
+            "dependencies": [
+              "29.1"
+            ],
+            "details": "Define security group or firewall policies to allow only necessary ports (e.g., SSH, HTTP/HTTPS, Docker ports) and restrict unauthorized access. Document rules for audit and compliance.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Set Up Backup Mechanisms",
+            "description": "Implement backup solutions for the VM to ensure data protection and disaster recovery.",
+            "dependencies": [
+              "29.1"
+            ],
+            "details": "Configure automated snapshots or backup schedules for VM disks and critical data. Verify backup integrity and retention policies.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Install and Configure Docker",
+            "description": "Install Docker on the VM and verify its operation for containerized workloads.",
+            "dependencies": [
+              "29.1",
+              "29.2"
+            ],
+            "details": "Install Docker engine, add user to Docker group, and test with a sample container. Ensure firewall rules permit Docker-related traffic if needed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Prepare Terraform Scripts for Infrastructure as Code",
+            "description": "Develop Terraform scripts to automate the provisioning and configuration of the VM, firewall, backups, and Docker installation.",
+            "dependencies": [
+              "29.1",
+              "29.2",
+              "29.3",
+              "29.4"
+            ],
+            "details": "Write modular Terraform code to define resources, variables, and outputs. Include documentation and version control for future scalability and reproducibility.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "Final System Integration and Acceptance Testing",
+        "description": "Comprehensive end-to-end testing of complete SambaAI system",
+        "details": "Execute complete user journey testing: Slack bot responds to @sambaai, searches both Confluence and Google Drive, channel filtering works correctly, citations included, performance meets targets. Test error handling, recovery procedures, and edge cases. Validate all success criteria from PRD.",
+        "testStrategy": "All PRD success criteria met: @sambaai responds in Slack, searches return relevant results, no 'Onyx' visible to users, all services stable, 99% uptime achieved, response time under 3 seconds",
+        "priority": "high",
+        "dependencies": [
+          26,
+          27,
+          29
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Plan Test Scenarios",
+            "description": "Identify and document comprehensive test scenarios covering all features, edge cases, and system interactions based on requirements.",
+            "dependencies": [],
+            "details": "Review PRD and technical documentation to ensure all functional and non-functional requirements are addressed in the planned scenarios.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Validate PRD Criteria",
+            "description": "Map each test scenario to specific Product Requirements Document (PRD) criteria to ensure full coverage.",
+            "dependencies": [
+              "30.1"
+            ],
+            "details": "Cross-reference test scenarios with PRD acceptance criteria and document traceability.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design Error Handling Test Cases",
+            "description": "Develop test cases specifically targeting error handling, edge cases, and failure modes.",
+            "dependencies": [
+              "30.1"
+            ],
+            "details": "Include negative tests, invalid inputs, and system boundary conditions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Design Performance Test Cases",
+            "description": "Create test cases to evaluate system performance, scalability, and responsiveness under load.",
+            "dependencies": [
+              "30.1"
+            ],
+            "details": "Define metrics, load profiles, and success criteria for performance validation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Execute End-to-End Tests",
+            "description": "Run the planned end-to-end test scenarios, including functional, error handling, and performance cases.",
+            "dependencies": [
+              "30.2",
+              "30.3",
+              "30.4"
+            ],
+            "details": "Coordinate test execution, log results, and track issues found during testing.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Analyze and Validate Results",
+            "description": "Review test outcomes, validate against PRD criteria, and confirm all acceptance conditions are met.",
+            "dependencies": [
+              "30.5"
+            ],
+            "details": "Document any deviations, defects, or unmet criteria for follow-up.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Document and Report Test Results",
+            "description": "Compile comprehensive test documentation, including scenario coverage, results, defects, and recommendations.",
+            "dependencies": [],
+            "details": "Prepare final test summary report for stakeholders and archive all test artifacts.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "title": "Diagnose and Fix Environment Configuration Loading",
+        "description": "Investigate and resolve issues with .env file configuration not being properly loaded by all services, ensuring environment variables are accessible across the platform",
+        "details": "Implement proper environment variable loading using dotenv (^16.3.1) with explicit path configuration. Add environment validation middleware to check for required API keys (OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY) on startup. Create a centralized config service that loads and validates all environment variables with proper error handling. Use process.env validation with joi (^17.11.0) or zod (^3.22.4) schema validation. Implement hot-reload capability for development environments using nodemon or similar. Add logging to track which environment variables are loaded and their sources.",
+        "testStrategy": "Create unit tests to verify environment loading with different .env configurations. Test API key accessibility across different services. Verify configuration changes are reflected without service restart where appropriate. Add integration tests to ensure all services can access required environment variables.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Investigate .env File Loading Issues",
+            "description": "Determine why .env file changes are not being reflected in the web interface and API key access issues.",
+            "dependencies": [],
+            "details": "Check dotenv configuration and ensure it is loaded before other services.\n<info added on 2025-06-21T17:28:33.339Z>\nThe root cause has been identified: the Docker Compose development file (docker-compose.dev.yml) is missing critical environment variables that are required for proper AI model configuration. The containers are not receiving the following environment variables that are defined in the .env file:\n\n- GEN_AI_MODEL_PROVIDER (set to 'openai' in .env)\n- GEN_AI_MODEL_VERSION (set to 'gpt-4.1' in .env)\n- ANTHROPIC_API_KEY (required for Claude model access)\n- OPENAI_API_KEY (required for GPT model access)\n- GEMINI_API_KEY (required for Gemini model access)\n\nCurrently, the containers only receive GEN_AI_API_KEY and GEN_AI_MAX_TOKENS, which is insufficient for proper model routing and authentication.\n\nThis missing configuration explains several issues:\n1. Changes to .env file are not reflected in the running containers\n2. Anthropic models are not available due to missing API key\n3. Gemini provider is completely missing due to lack of API key\n4. Slack bot cannot properly route to different AI models\n\nThe solution is to update docker-compose.dev.yml to explicitly pass all required environment variables to both the api_server and background containers.\n</info added on 2025-06-21T17:28:33.339Z>\n<info added on 2025-06-21T18:00:46.773Z>\nThe user request appears to be about a UI layout enhancement for a Documents Container, which is unrelated to the current subtask about diagnosing and fixing environment configuration loading. This seems to be an update meant for a different task or subtask. No new information should be added to the current subtask's details based on this request.\n</info added on 2025-06-21T18:00:46.773Z>",
+            "status": "done",
+            "testStrategy": "Verify environment variables are accessible via process.env"
+          },
+          {
+            "id": 2,
+            "title": "Implement Explicit Path Configuration for dotenv",
+            "description": "Configure dotenv to load .env files from specific paths to ensure correct environment variable loading.",
+            "dependencies": [
+              1
+            ],
+            "details": "Use dotenv.config() with path option to specify .env file locations.",
+            "status": "done",
+            "testStrategy": "Validate environment variables are loaded correctly from specified paths"
+          },
+          {
+            "id": 3,
+            "title": "Develop Environment Validation Middleware",
+            "description": "Create middleware to validate required API keys (OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY) on startup.",
+            "dependencies": [
+              2
+            ],
+            "details": "Use Joi or Zod for schema validation of environment variables.",
+            "status": "done",
+            "testStrategy": "Test middleware with missing or invalid API keys"
+          },
+          {
+            "id": 4,
+            "title": "Create Centralized Config Service",
+            "description": "Design a centralized service to load, validate, and manage all environment variables with proper error handling.",
+            "dependencies": [
+              3
+            ],
+            "details": "Integrate with environment validation middleware for consistency.",
+            "status": "done",
+            "testStrategy": "Verify config service loads and validates all environment variables correctly"
+          },
+          {
+            "id": 5,
+            "title": "Implement Hot-Reload Capability for Development",
+            "description": "Use nodemon or similar tools to enable hot-reloading of environment variables in development environments.",
+            "dependencies": [
+              4
+            ],
+            "details": "Configure nodemon to watch for .env file changes and restart the application accordingly.",
+            "status": "done",
+            "testStrategy": "Test hot-reload functionality by updating .env file and verifying changes are reflected"
+          },
+          {
+            "id": 6,
+            "title": "Add Logging for Environment Variables",
+            "description": "Implement logging to track which environment variables are loaded and their sources.",
+            "dependencies": [
+              5
+            ],
+            "details": "Use logging libraries to monitor environment variable loading and report any issues.",
+            "status": "done",
+            "testStrategy": "Verify logging captures environment variable loading events correctly"
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "Implement Google Gemini LLM Provider Integration",
+        "description": "Add Google Gemini as a complete LLM provider option in the admin interface with support for Gemini 2.5 Pro and Gemini 2.5 Flash models",
+        "details": "Install @google/generative-ai SDK (^0.17.1) and implement Gemini provider class following the existing provider pattern. Create provider configuration with models: gemini-2.5-pro-latest, gemini-2.5-flash-latest. Implement proper API key handling from GOOGLE_API_KEY environment variable. Add Gemini-specific request/response formatting, error handling, and rate limiting (15 RPM for free tier, 1000 RPM for paid). Implement streaming support using the generateContentStream method. Add provider to the admin interface dropdown with proper model selection UI. Include safety settings configuration and content filtering options specific to Gemini API.",
+        "testStrategy": "Unit tests for Gemini provider class with mocked API responses. Integration tests with actual Gemini API using test API key. Verify model selection appears correctly in admin interface. Test streaming and non-streaming response generation. Validate error handling for API failures and rate limiting.",
+        "priority": "high",
+        "dependencies": [
+          31
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 33,
+        "title": "Fix Anthropic Claude Model Availability Issue",
+        "description": "Resolve the issue where Anthropic Claude models are not appearing in the assistant dropdown despite provider being added",
+        "details": "Debug the Anthropic provider implementation using @anthropic-ai/sdk (^0.24.2). Verify API key configuration and test connection to Anthropic API. Check model enumeration logic and ensure Claude models (claude-3-5-sonnet-20241022, claude-3-haiku-20240307, claude-3-opus-20240229) are properly registered. Implement proper model metadata including context limits, pricing tiers, and capabilities. Fix any async/await issues in model loading. Verify the provider registration process and ensure models are being added to the global model registry. Add proper error logging for Anthropic API connection issues.",
+        "testStrategy": "Test Anthropic API connectivity with valid API key. Verify model list retrieval from Anthropic API. Check database/registry for proper model storage. Test assistant creation with Claude models. Validate model selection persistence and retrieval in assistant interface.",
+        "priority": "high",
+        "dependencies": [
+          31
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 34,
+        "title": "Implement Proper Model Selection Filtering Logic",
+        "description": "Fix the issue where unselected OpenAI models still appear in assistant interface by implementing proper model filtering based on user selections",
+        "details": "Implement client-side and server-side model filtering logic. Create a model selection state management system using React Context or Redux Toolkit (^1.9.7) if using React, or Vuex/Pinia if using Vue. Add database schema to store user model preferences per provider. Implement API endpoints for saving/retrieving model selections: GET/POST /api/providers/{providerId}/models/selected. Add real-time UI updates when models are selected/deselected. Implement proper state synchronization between admin interface and assistant creation interface. Use optimistic updates with rollback on API failure.",
+        "testStrategy": "Test model selection persistence across browser sessions. Verify deselected models don't appear in assistant dropdown. Test bulk selection/deselection functionality. Validate API endpoints with different user permissions. Test concurrent model selection changes by multiple users.",
+        "priority": "medium",
+        "dependencies": [
+          32,
+          33
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 35,
+        "title": "Debug and Fix Slack Bot Message Processing",
+        "description": "Diagnose why the Slack bot is not responding to messages despite successful socket connection and implement proper message event handling",
+        "details": "Debug Slack Bot using @slack/bolt (^3.17.1) framework. Verify socket mode configuration with proper app-level token and bot token. Check event subscriptions for message.channels, message.groups, and app_mention events. Implement proper message filtering to avoid responding to bot's own messages. Add comprehensive logging for all incoming events using winston (^3.11.0). Verify channel-specific configuration and permissions. Check if bot has proper scopes: channels:read, channels:history, chat:write, app_mentions:read. Implement message preprocessing to handle different message types and threading.",
+        "testStrategy": "Test socket connection establishment and maintenance. Verify event reception with different message types. Test channel-specific message filtering. Validate bot permissions and scopes. Test message threading and mention handling. Add integration tests with mock Slack events.",
+        "priority": "high",
+        "dependencies": [
+          31
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 36,
+        "title": "Implement LLM Integration for Slack Bot Responses",
+        "description": "Integrate the configured LLM models with Slack bot to generate and post responses to user messages",
+        "details": "Create LLM service integration layer that can dynamically use different providers based on assistant configuration. Implement conversation context management using Redis (^4.6.10) or in-memory storage for session handling. Add message preprocessing to extract context, user intent, and conversation history. Implement response generation with proper error handling and fallback mechanisms. Add response post-processing for Slack formatting (mentions, channels, emojis). Implement rate limiting per user/channel to prevent abuse. Add conversation memory with configurable retention periods. Use async/await patterns with proper timeout handling (30s default).",
+        "testStrategy": "Test LLM response generation with different providers. Verify conversation context persistence across messages. Test error handling when LLM APIs are unavailable. Validate response formatting for Slack. Test rate limiting functionality. Integration test full message flow: receive \u2192 process \u2192 generate \u2192 respond.",
+        "priority": "high",
+        "dependencies": [
+          34,
+          35
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 37,
+        "title": "Implement Provider-Model Synchronization System",
+        "description": "Create a robust system to synchronize LLM provider configurations between environment variables, database, and web interface",
+        "details": "Implement a configuration synchronization service that runs on startup and periodically checks for configuration drift. Create database migrations to ensure provider and model tables are up-to-date. Implement a configuration validation service that checks API key validity and model availability. Add real-time configuration updates using WebSocket or Server-Sent Events for admin interface. Create a configuration backup/restore system. Implement configuration versioning to track changes. Use database transactions to ensure atomic configuration updates. Add configuration audit logging to track who made changes and when.",
+        "testStrategy": "Test configuration sync after environment variable changes. Verify database consistency after provider updates. Test real-time UI updates when configuration changes. Validate configuration rollback functionality. Test concurrent configuration changes by multiple admins.",
+        "priority": "medium",
+        "dependencies": [
+          32,
+          33,
+          34
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 38,
+        "title": "Implement End-to-End Testing and Monitoring",
+        "description": "Create comprehensive end-to-end testing suite and monitoring system to ensure all components work together correctly",
+        "details": "Implement end-to-end testing using Playwright (^1.40.0) or Cypress (^13.6.0) for web interface testing. Create Slack bot integration tests using mock Slack events and real LLM API calls. Implement health check endpoints for all services: /health/providers, /health/slack-bot, /health/llm-integration. Add monitoring using Prometheus metrics and Grafana dashboards or similar observability stack. Implement alerting for critical failures: provider API failures, Slack bot disconnections, high error rates. Create automated testing pipeline that runs full end-to-end scenarios. Add performance monitoring for LLM response times and Slack message processing latency.",
+        "testStrategy": "Create test scenarios covering: provider addition, model selection, assistant creation, Slack message processing, LLM response generation. Test failure scenarios and recovery mechanisms. Validate monitoring alerts trigger correctly. Test system performance under load. Verify all success criteria are met through automated testing.",
+        "priority": "medium",
+        "dependencies": [
+          36,
+          37
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-06-20T17:50:50.536Z",
+      "updated": "2025-06-22T00:30:00.000Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
