@@ -21,25 +21,25 @@ SambaAI inherits Onyx's proven three-database architecture:
 ```mermaid
 graph TB
     subgraph "Slack Interface"
-        U[Users] --> S[@sambaai bot]
+        U[Users] --> S["SambaAI Bot"]
     end
     
     subgraph "SambaAI Core"
         S --> A[API Server]
         A --> E[Embedding Models]
-        A --> L[LLM (Claude/GPT)]
+        A --> L["LLM (Claude/GPT)"]
     end
     
     subgraph "Data Sources"
         C[Confluence] --> I[Document Indexing]
-        G[Google Drive] --> I
-        I --> V[Vespa Search]
+        G["Google Drive"] --> I
+        I --> V["Vespa Search"]
     end
     
     subgraph "Storage Layer"
-        A --> P[PostgreSQL<br/>Metadata & Config]
-        A --> R[Redis<br/>Caching]
-        A --> V[Vespa<br/>Vector Search]
+        A --> P["PostgreSQL<br/>Metadata & Config"]
+        A --> R["Redis<br/>Caching"]
+        A --> V2["Vespa<br/>Vector Search"]
     end
     
     subgraph "Infrastructure"
@@ -49,8 +49,8 @@ graph TB
             V
         end
         subgraph "Managed Services"
-            P2[Cloud SQL<br/>PostgreSQL]
-            R2[Memorystore<br/>Redis]
+            P2["Cloud SQL<br/>PostgreSQL"]
+            R2["Memorystore<br/>Redis"]
         end
     end
 ```
